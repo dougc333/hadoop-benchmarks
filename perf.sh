@@ -5,23 +5,30 @@
 #not sure if I should use the openjdk at /home/java/tools or whereever this is. 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
-  if [ -a /usr/lib/java ] ;then
-    echo "java at /usr/lib/java"
+  if [ -a /usr/java/latest ] ;then
+    echo "/usr/java/latest found"
   else 
-    echo " java not at /usr/lib/java; need to install from the repo "
+    echo "/usr/java/latest not found"
   fi
 }
 
 #assume ansible copied rpm over
 function installjava { 
+  sudo wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm
   sudo rpm -ihv jdk-7u71-linux-x64.rpm
+  if [ -a /usr/java/latest ];then
+    echo "java successfully installed"
+  fi
 }
 
 #better to put functionality in bash vs. ansible
 function testsudo {
-  res=$(sudo cat /etc/sudoers | grep $USER)
+  #res=$(sudo cat /etc/sudoers | grep $USER 2>&1)
+  res=$(sudo cat /etc/sudoers 2>&1)
   test="$USER is not in the sudoers file."
-  if [[ $res=$test* ]] ;then
+  echo "res:$res"
+  echo "test:$test"
+  if [[ "$res" = "$test"* ]] ;then
     echo "user $USER not in sudoers file"
   else
     echo "sudoers file ok"
@@ -30,6 +37,7 @@ function testsudo {
 
 #addus $USER to sudoers file
 function addsudo {
+  sudo cp /etc/sudoers /etc/sudoers.orig
   sudo sed '/root[[:space:]]*ALL/a  $USER\tALL=(ALL)\tALL' /etc/sudoers
 }
 
@@ -196,10 +204,21 @@ function configblkfile {
 #remove hadoop from system
 #clean up /var/log; /var/lib or /testhdfsvol/log; testhdfsvol/lib
 function restore {
-  sudo mv /etc/sysconfig/dssd-blkdevorig /etc/sysconfig/dssd-blkdev
-  sudo chmod 644 /etc/sysconfig/dssd-blkdev
-  sudo rm /etc/sysconfig/dssd-blkdevold
-  #sudo rmdir tmpdir
+  if [ -a /etc/sudoers.orig ];then
+    echo "restoring sudoers"
+    sudo mv /etc/sudoers.orig /etc/sudoers
+  fi
+
+  if [ -a /etc/sysconfig/dssd-blkdevorig ];then
+    echo  "restoring blkdev file"
+    sudo mv /etc/sysconfig/dssd-blkdevorig /etc/sysconfig/dssd-blkdev
+    sudo chmod 644 /etc/sysconfig/dssd-blkdev
+    sudo rm /etc/sysconfig/dssd-blkdevold
+    if [ -a tmpdir ];then
+      rm -rf tmpdir
+    fi 
+  fi
+
   sudo mv tmpsite/hdfs-site.xmlorig /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
   sudo mv tmpsite/yarn-site.xmlorig /usr/lib/hadoop/etc/hadoop/yarn-site.xml
   sudo mv tmpsite/mapred-site.xmlorig /usr/lib/hadoop/etc/hadoop/mapred-site.xml
