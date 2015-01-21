@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: doug
+  tasks: 
+   - name: copy stuff to r2391
+     copy: src=/home/dc/perf.sh dest=/home/doug/perf.sh 
+  #test shell
+   - name: test bash command
+     command: bash -c "/home/doug/perf.sh initlogs"
