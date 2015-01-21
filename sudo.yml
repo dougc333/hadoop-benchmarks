@@ -6,4 +6,4 @@
 
   tasks: 
    - name: add user to sudo
-     lineinfile: dest=/home/dc/hadoop-benchmarks/sudoers state=present line=foo regexp="asdfasdf"
+     lineinfile: dest=/home/dc/hadoop-benchmarks/sudoers  line=foo  insertafter="root\tALL" 
