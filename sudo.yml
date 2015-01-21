@@ -1,6 +1,9 @@
 ---
 - hosts: all
- 
+  remote_user: root 
+
   tasks: 
+   - name: make sudobackup before mods
+     copy: src=/etc/sudoers dest=/etc/sudoers.backup mode=0644
    - name: add user to sudo
-     lineinfile: dest=/home/dc/hadoop-benchmarks/sudoers  line="doug    ALL=(ALL)       ALL"  insertafter="root\tALL" 
+     lineinfile: dest=/etc/sudoers  line="doug    ALL=(ALL)       ALL"  insertafter="root\tALL" 
