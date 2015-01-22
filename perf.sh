@@ -26,10 +26,17 @@ function testjava {
 function installjava { 
   echo "installjava" >> $LOGFILE
   cd /home/doug/hadoop-benchmarks
-  res=$(wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm)
+  res=$(wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm 2>&1)
   echo $res >> $LOGFILE
-  res1=$(sudo rpm -ihv jdk-7u71-linux-x64.rpm)
+  if [ -a /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm ] ;then
+    echo "jdk download ok" >> $LOGFILE
+  else 
+    echo "jdk download fail" >> $LOGFILE
+  fi 
+
+  res1=$(sudo rpm -ihv jdk-7u71-linux-x64.rpm 2>&1)
   echo $res1 >> $LOGFILE
+
   if [ -a /usr/java/latest ];then
     echo "java successfully installed">>$LOGFILE
   else 
