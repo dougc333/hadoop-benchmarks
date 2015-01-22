@@ -1,7 +1,12 @@
 #!/bin/bash -p
 
+#redo this function from a git clone repo
 
+#does this work? no permission problems here? 
 function addsudouser {
+  cd /home/$USER
+  git clone https://github.com/dougc333/hadoop-benchmarks
+  cd hadoop-benchmarks
   #modify sudoers.orig
   res=$(scp sudoers.fix root@$1:/etc/sudoers)
   echo $res
@@ -16,9 +21,6 @@ function restore {
   res=$(scp sudoers.backup root@$1:/etc/sudoers)
 }
 
-
-
-#not sure if I should use the openjdk at /home/java/tools or whereever this is. 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
   if [ -a /usr/java/latest ] ;then
@@ -51,6 +53,7 @@ function testsudo {
   fi 
 }
 
+#
 #addus $USER to sudoers file
 function addsudo {
   sudo cp /etc/sudoers /etc/sudoers.orig
