@@ -4,6 +4,6 @@
 
   tasks: 
    - name: make sudobackup before mods
-     copy: src=/etc/sudoers dest=/etc/sudoers.backup mode=0644
+     copy: src=/etc/sudoers dest=/etc/sudoers.backup
    - name: add user to sudo
      lineinfile: dest=/etc/sudoers  line="doug    ALL=(ALL)       ALL"  insertafter="root\tALL" 

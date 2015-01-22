@@ -7,6 +7,11 @@ function addsudouser {
   echo $res
 }
 
+function copyperftoremote {
+  res=$( cp perf.sh $1:/home/doug/perf.sh)
+  echo $res
+}
+
 function restore {
   res=$(scp sudoers.backup root@$1:/etc/sudoers)
 }

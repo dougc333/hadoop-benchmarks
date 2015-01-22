@@ -1,3 +1,5 @@
 for jenkins benchmarking automation
 
 
+1) easier to do the sudo in bash script vs. ansible
+
