@@ -3,10 +3,8 @@
 LOGFILE=/home/doug/hadoop-benchmarks/logs/test.log
 
 function initlog {
-  rm -rf /home/dc/hadoop-benchmarks
-  if [ -a /home/doug/hadoop-benchmarks ]; then
-    git clone https://github.com/dougc333/hadoop-benchmarks
-  fi
+  rm -rf /home/doug/hadoop-benchmarks
+  git clone https://github.com/dougc333/hadoop-benchmarks
   mkdir /home/doug/hadoop-benchmarks/logs
   touch $LOGFILE
  
