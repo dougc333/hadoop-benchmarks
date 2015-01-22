@@ -1,5 +1,8 @@
 for jenkins benchmarking automation
 
 
-1) easier to do the sudo in bash script vs. ansible
-
+1) update sudo file from outside
+2) testjava; installjava
+3) testsudo
+4) checkcm
+5) createblkdev
