@@ -13,6 +13,7 @@ function initlog {
 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
+  testsudo
   if [ -a /usr/java/latest ] ;then
     echo "/usr/java/latest found" >> $LOGFILE
   else   
@@ -27,20 +28,23 @@ function installjava {
   sudo rpm -ihv jdk-7u71-linux-x64.rpm
   if [ -a /usr/java/latest ];then
     echo "java successfully installed">>$LOGFILE
+  else 
+    echo "no java" >> $LOGFILE
   fi
 }
 
 #better to put functionality in bash vs. ansible
 function testsudo {
+  echo "testsudo" >> $LOGFILE
   #res=$(sudo cat /etc/sudoers | grep $USER 2>&1)
   res=$(sudo cat /etc/sudoers 2>&1)
-  test="$USER is not in the sudoers file."
+  test="$USER is not in the sudoers file." 
   echo "res:$res"
   echo "test:$test"
   if [[ "$res" = "$test"* ]] ;then
-    echo "user $USER not in sudoers file"
+    echo "user $USER not in sudoers file" >> $LOGFILE
   else
-    echo "sudoers file ok"
+    echo "sudoers file ok" >> $LOGFILE
   fi 
 }
 
