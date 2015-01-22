@@ -14,9 +14,10 @@ function initlog {
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
   if [ -a /usr/java/latest ] ;then
-    echo "/usr/java/latest found" >> LOGFILE
+    echo "/usr/java/latest found" >> $LOGFILE
   else   
-    echo "/usr/java/latest not found" >> LOGFILE
+    echo "/usr/java/latest not found" >> $LOGFILE
+    installjava
   fi
 }
 
@@ -25,7 +26,7 @@ function installjava {
   sudo wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm
   sudo rpm -ihv jdk-7u71-linux-x64.rpm
   if [ -a /usr/java/latest ];then
-    echo "java successfully installed"
+    echo "java successfully installed">>$LOGFILE
   fi
 }
 
