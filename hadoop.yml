@@ -11,6 +11,6 @@
    - name: test java 
      command: bash -c "/home/doug/hadoop-benchmarks/perf.sh testjava"
   # install java
-   - name: install javarpm
-     remote_user: root
-     command: bash -c "rpm -ihv /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm"
+  # - name: install javarpm
+  #   remote_user: root
+  #   command: bash -c "rpm -ihv /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm"
