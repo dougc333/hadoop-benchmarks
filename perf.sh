@@ -1,6 +1,17 @@
 #!/bin/bash -p
 
-#make jenkins friendly and add more tests
+
+function adduser {
+  #modify sudoers.orig
+  res=$(scp sudoers.fix root@$1:/etc/sudoers)
+  echo $res
+}
+
+function restore {
+  res=$(scp sudoers.backup root@$1:/etc/sudoers)
+}
+
+
 
 #not sure if I should use the openjdk at /home/java/tools or whereever this is. 
 #do I get the mounted directories in a ssh via ansible? Assume no
