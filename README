@@ -2,7 +2,28 @@ for jenkins benchmarking automation
 
 
 1) update sudo file from outside
+   check sudo from perf.sh; verify ok 
 2) testjava; installjava
-3) testsudo
-4) checkcm
+
+   install hadoop; take benchmarks for single node
+   initnamenode
+   starthadoop
+   runtests
+   installhadoopcompnents(spark,hive,hbase)
+Install blkdriver
+stophadoop
+3) checkcm
+4) verifymultipath
+   configblkfile
 5) createblkdev
+6) finddm
+7) createhadoopdirs
+   modsitefiles
+   moddaemon
+   modenv
+   
+   initnamenodee
+   starthadoop 
+   run tests (block mode single node)
+
+
