@@ -1,25 +1,11 @@
 #!/bin/bash -p
 
-#redo this function from a git clone repo
-
-#does this work? no permission problems here? 
-function addsudouser {
-  cd /home/$USER
-  git clone https://github.com/dougc333/hadoop-benchmarks
-  cd hadoop-benchmarks
-  #modify sudoers.orig
-  res=$(scp sudoers.fix root@$1:/etc/sudoers)
-  echo $res
-}
 
 function copyperftoremote {
   res=$( cp perf.sh $1:/home/doug/perf.sh)
   echo $res
 }
 
-function restore {
-  res=$(scp sudoers.backup root@$1:/etc/sudoers)
-}
 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
