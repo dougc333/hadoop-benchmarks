@@ -36,7 +36,7 @@ function installjava {
 
   res1=$(sudo rpm -ihv jdk-7u71-linux-x64.rpm 2>&1)
   echo $res1 >> $LOGFILE
-
+  
   if [ -a /usr/java/latest ];then
     echo "java successfully installed">>$LOGFILE
   else 
