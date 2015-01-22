@@ -24,8 +24,11 @@ function testjava {
 
 #assume ansible copied rpm over
 function installjava { 
-  sudo wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm
-  sudo rpm -ihv jdk-7u71-linux-x64.rpm
+  echo "installjava" >> $LOGFILE
+  res=$(sudo wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm)
+  echo $res >> $LOGFILE
+  res1=$(sudo rpm -ihv jdk-7u71-linux-x64.rpm)
+  echo $res1 >> $LOGFILE
   if [ -a /usr/java/latest ];then
     echo "java successfully installed">>$LOGFILE
   else 
