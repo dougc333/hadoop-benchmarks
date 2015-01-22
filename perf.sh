@@ -1,7 +1,7 @@
 #!/bin/bash -p
 
 
-function adduser {
+function addsudouser {
   #modify sudoers.orig
   res=$(scp sudoers.fix root@$1:/etc/sudoers)
   echo $res
