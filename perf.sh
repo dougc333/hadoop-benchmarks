@@ -7,16 +7,16 @@ function initlog {
   git clone https://github.com/dougc333/hadoop-benchmarks
   mkdir /home/doug/hadoop-benchmarks/logs
   touch $LOGFILE
- 
+  echo "logfile created" >> $LOGFILE 
 }
 
 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
   if [ -a /usr/java/latest ] ;then
-    echo "/usr/java/latest found"
-  else 
-    echo "/usr/java/latest not found"
+    echo "/usr/java/latest found" >> LOGFILE
+  else   
+    echo "/usr/java/latest not found" >> LOGFILE
   fi
 }
 
