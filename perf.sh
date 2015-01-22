@@ -1,5 +1,15 @@
 #!/bin/bash -p
 
+LOGFILE=/home/doug/hadoop-benchmarks/logs/test.log
+
+function initlog {
+  if [ -a /home/doug/hadoop-benchmarks ]; then
+    git clone https://github.com/dougc333/hadoop-benchmarks
+  fi
+  mkdir /home/doug/hadoop-benchmarks/logs
+  touch /home/doug/hadoop-benchmarks/logs/test.log
+ 
+}
 
 function copyperftoremote {
   res=$( cp perf.sh $1:/home/doug/perf.sh)

@@ -27,3 +27,5 @@ stophadoop
    run tests (block mode single node)
 
 
+1) add logging
+2) add server access to logs 
