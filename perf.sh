@@ -37,14 +37,14 @@ function installjava {
     res=$(wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm --no-check-certificate 2>&1)
     echo $res >> $LOGFILE
   fi
+
   if [ -a /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm ] ;then
     echo "jdk download ok" >> $LOGFILE
   else 
     echo "jdk download fail" >> $LOGFILE
   fi 
   echo "starting rpm install" >> $LOGFILE
-  res1=$(sudo rpm -ihv jdk-7u71-linux-x64.rpm 2>&1)
-  echo $res1 >> $LOGFILE
+  sudo rpm -ihv jdk-7u71-linux-x64.rpm 
   echo "end rpm install" >> $LOGFILE
   
   if [ -a /usr/java/latest ];then
