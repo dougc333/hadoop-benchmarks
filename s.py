@@ -18,6 +18,7 @@ try:
   s.sendline('bash perf.sh testjava')
   s.prompt()
   print(s.before)
+  s.sendline('bash perf.sh')
 except pxssh.ExceptionPxssh as e:
   print("bad")
   print(e)
