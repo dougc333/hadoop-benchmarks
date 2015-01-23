@@ -46,6 +46,8 @@ function installjava {
   echo "starting rpm install" >> $LOGFILE
   sudo rpm -ihv jdk-7u71-linux-x64.rpm 
   echo "end rpm install" >> $LOGFILE
+  export JAVA_HOME=/usr/java/jdk1.7.0_71/
+  export PATH=$PATH:$JAVA_HOME/bin
   
   if [ -a /usr/java/latest ];then
     echo "java successfully installed">>$LOGFILE
@@ -262,9 +264,6 @@ function restore {
   sudo mv tmpdaemon/yarn-daemon.shorig /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
   #tbd add the mr-jobhistory-server
 }
-
-
-
 
 
 function clean {
