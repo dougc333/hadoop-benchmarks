@@ -30,8 +30,13 @@ function testjava {
 function installjava { 
   echo "installjava" >> $LOGFILE
   cd /home/doug/hadoop-benchmarks
-  res=$(wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm 2>&1)
-  echo $res >> $LOGFILE
+  if [ -a jdk-7u71-linux-x64.rpm ];then
+    echo "jdk downloaded" >> $LOGFILE
+  else
+    echo "downloading jdk" >> $LOGFILE  
+    res=$(wget https://s3-us-west-2.amazonaws.com/dssd/jdk-7u71-linux-x64.rpm --no-check-certificate 2>&1)
+    echo $res >> $LOGFILE
+  fi
   if [ -a /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm ] ;then
     echo "jdk download ok" >> $LOGFILE
   else 

@@ -11,9 +11,13 @@ try:
   username='doug'
   password='H0onglam'
   s.login(hostname,username,password)
-  s.sendline('ls')
+  s.sendline('ls -l /home/doug/hadoop-benchmarks')
   s.prompt()
   print(s.before)  
+  s.sendline('cd /home/doug/hadoop-benchmarks/')
+  s.sendline('bash perf.sh testjava')
+  s.prompt()
+  print(s.before)
 except pxssh.ExceptionPxssh as e:
   print("bad")
   print(e)
