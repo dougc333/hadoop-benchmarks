@@ -18,7 +18,9 @@ try:
   s.sendline('bash perf.sh testjava')
   s.prompt()
   print(s.before)
-  s.sendline('bash perf.sh')
+  s.sendline('sudo rpm -ivh /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm')
+  s.prompt()
+  print(s.before)
 except pxssh.ExceptionPxssh as e:
   print("bad")
   print(e)
