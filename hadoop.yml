@@ -12,4 +12,8 @@
   # test java
    - name: test java 
      command: bash -c "/home/doug/hadoop-benchmarks/perf.sh testjava"
+   - name: hadoop
+     sudo: yes
+     sudo_user: root --ask-sudo-pass
+     command bash -c "/home/doug/hadoop-benchmarks/perf.sh installhadoop"
 
