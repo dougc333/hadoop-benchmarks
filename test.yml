@@ -1,14 +1,13 @@
 
 ---
 - hosts: all
+  su: yes
+  su_user: root
   remote_user: doug
   
   tasks: 
    - name: copy public key to remote hosts
      authorized_key: user=doug key="{{ lookup('file','~/.ssh/id_rsa.pub') }}" state=present manage_dir=yes
                       
-#- name: copy stuff to r2391
-#  copy: src=/home/dc/perf.sh dest=/home/doug/perf.sh
-#test shell
-#- name: test bash command
-#  command: bash -c "/home/doug/perf.sh initlogs"
+   - name: copy nopasswd sudoers
+     command: 'scp sudoers.fix root@r2391-d5-us01:/etc/sudoers'
