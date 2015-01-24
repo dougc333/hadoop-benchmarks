@@ -1,5 +1,7 @@
 #!/bin/bash -p
 
+#remove interactive mode; run batch mode; 
+#remove jdk; use open jdk install instead to match all nodes
 LOGFILE=/home/doug/hadoop-benchmarks/logs/test.log
 
 function initlog {
@@ -55,6 +57,13 @@ function installjava {
     echo "no java" >> $LOGFILE
   fi
 }
+
+
+function installopenjdk {
+  sudo yum install java-1.87.0-openjdk
+  
+}
+
 
 #better to put functionality in bash vs. ansible
 function testsudo {

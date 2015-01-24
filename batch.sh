@@ -1,5 +1,7 @@
 #!/bin/bash -p
 
+#remove interactive mode; run batch mode; 
+#remove jdk; use open jdk install instead to match all nodes
 LOGFILE=/home/doug/hadoop-benchmarks/logs/test.log
 
 function initlog {
@@ -18,13 +20,14 @@ function ssh {
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testjava {
   testsudo
-  if [ -a /usr/java/latest ] ;then
-    echo "/usr/java/latest found" >> $LOGFILE
-  else   
-    echo "/usr/java/latest not found" >> $LOGFILE
-    installjava
+  res= $(java)
+  if [ $res="-bash: java: command not found" ];then
+    echo "java not installed">>$LOGFILE
   fi
 }
+
+
+
 
 #assume ansible copied rpm over
 function installjava { 
@@ -55,6 +58,13 @@ function installjava {
     echo "no java" >> $LOGFILE
   fi
 }
+
+
+function installopenjdk {
+  sudo yum install java-1.87.0-openjdk
+  
+}
+
 
 #better to put functionality in bash vs. ansible
 function testsudo {
@@ -446,4 +456,7 @@ function modsitefiles {
   sed 's/var/$1/g' yarn-site.xmlorig > /etc/hadoop/conf/yarn-site.xml
 }
  
-$@
+#$@
+
+testjava
+
