@@ -1,8 +1,8 @@
-
+#tricky make sure ansible.cfg doesnt have remote_user defined
 ---
 - hosts: all
   remote_user: root
   
   tasks:              
    - name: copy nopasswd sudoers
-     template: src=/Users/dc/hadoop-benchmarks/sudoers.fix dest=/etc/sudoers
+     copy: src=/Users/dc/hadoop-benchmarks/sudoers.fix dest=/etc/sudoers

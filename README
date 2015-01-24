@@ -1,5 +1,7 @@
 for jenkins benchmarking automation
 
+cant get ansible sudo to work
+scp sudoers.fix root@r2391-d5-us01:/etc/sudoers works
 
 1) update sudo file from outside
    check sudo from perf.sh; verify ok 
