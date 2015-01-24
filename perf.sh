@@ -309,10 +309,10 @@ function runtests {
   (time hadoop fs -ls -R / > outputfsls)
   time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples-2.4.1.jar pi 10 1000 > outputpi
   #
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 16 -fileSize 250MB -resFile /tmp/TestDFSIOwrite16_250.txt
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOread16_250.txt
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 4 -fileSize 16GB -resFile /tmp/TestDFSIOwrite2.txt
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 4 -fileSize 16GB -resFile /tmp/TestDFSIOread2.txt
+  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOwrite64_1G.txt
+  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOread64_1G.txt
+  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 4 -fileSize 16GB -resFile /tmp/TestDFSIOwrite4_16G.txt
+  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 4 -fileSize 16GB -resFile /tmp/TestDFSIOread4_16G.txt
   # add all the hadoop tests here....
   
 }
