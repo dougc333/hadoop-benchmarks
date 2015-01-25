@@ -95,8 +95,9 @@ function checkcm {
 #assumes volume testhdfsvol created in SM; prob should replace with a ffutil create command
 #creates /testhdfsvol directory
 function createblkdev {
+  echo "function createblkdev" >> $LOGFILE
   if [ -a /testhdfsvol ] ;then
-    echo "/testhdfsvol exists"
+    echo "/testhdfsvol exists" >> $LOGFILE
   else
     echo "creating /testhdfsvol for blockdev"
     res=$( sudo mkdir /testhdfsvol 2>&1 )
@@ -105,26 +106,26 @@ function createblkdev {
   fi
 
   if [ -a /testhdfsvol ];then
-    echo "/testhdfs vol successfully created and/or aleady exists"
+    echo "/testhdfs vol successfully created and/or aleady exists" >> $LOGFILE
   else
-    echo "/testhdfsvol not created;debug"
+    echo "/testhdfsvol not created;debug" >> $LOGFILE
   fi
 
   #test if create needed
   exists=$(/opt/dssd/bin/flood ls -V testhdfsvol)
-  echo "exists:$exists"
+  echo "exists:$exists" >> $LOGFILE
   if [ $exists="flood: ls: failed to connect: No such file or directory" ];then
     echo "creating flood object for testhdfsvol"
     res=$(/opt/dssd/bin/flood create -V testhdfsvol -t block -F 4096 -l 200G TestObj1 2>&1)
-    echo "creating block device:$res"
+    echo "creating block device:$res" >> $LOGFILE
     arr=( $res )
     if [ $res='' ];then
-      echo "create completed"
+      echo "create completed" >> $LOGFILE
     else
-      echo "create did not complete:$res debug"
+      echo "create did not complete:$res debug" >> $LOGFILE
     fi
   else
-    echo "flood object created for testhdfsvol name:$exists"
+    echo "flood object created for testhdfsvol name:$exists" >> $LOGFILE
   fi
 }
 
@@ -135,26 +136,27 @@ function createblkdev {
 # we should add the different device names dssd-000X and dm-X
 #3) format and mount; 
 function finddm {
+  echo "function finddm" >> $LOGFILE
   res1=$(/opt/dssd/bin/flood ls -V testhdfsvol -lhi 2>&1)
-  echo "res1:$res1"
+  echo "res1:$res1" >> $LOGFILE
   arr=( $res1 )
-  echo "object id:${arr[4]}"
+  echo "object id:${arr[4]}" >> $LOGFILE
   #test if dm-uuid-mpath-${arr[4]} exists under /dev/disk/by-id
-  echo "looking for /dev/disk/by-id/dm-uuid-mpath-${arr[4]}"
+  echo "looking for /dev/disk/by-id/dm-uuid-mpath-${arr[4]}" >> $LOGFILE
   if [ -e /dev/disk/by-id/dm-uuid-mpath-${arr[4]} ];then
-    echo "found multipath diskid for testhdfsvol" 
+    echo "found multipath diskid for testhdfsvol"  >> $LOGFILE
   else
-    echo "multipath diskid not found"
+    echo "multipath diskid not found" >> $LOGFILE
   fi
 
   #format
-  echo "formatting using multipath id" 
+  echo "formatting using multipath id" >> $LOGFILE
   res=$(sudo mkfs.ext4 /dev/disk/by-id/dm-uuid-mpath-${arr[4]})
-  echo $res
+  echo $res >> $LOGFILE
   #mount
-  echo "mounting"
+  echo "mounting" >> $LOGFILE
   res=$(sudo mount /dev/disk/by-id/dm-uuid-mpath-${arr[4]} /testhdfsvol)
-  echo $res
+  echo $res >> $LOGFILE
   #where do we chmod and chgrp for /testhdfsvol? 
 }
 
@@ -162,6 +164,7 @@ function finddm {
 #step 2
 #funny need to put multipath.conf under /etc not under /etc/multipath
 function verifymultipath {
+  echo "function verifymultipath" >> $LOGFILE
   if [ -a /etc/multipath.conf ]; then
     echo "multipath conf present" >> $LOGFILE
   else
@@ -201,30 +204,32 @@ function verifymultipath {
 #step 3b
 #edit /etc/sysconfig/blkdev file and start blkdev service
 function startblkdriver { 
+  echo "function startblkdriver" >> $LOGFILE
   numlines=$(service dssd status | wc -l)
-  echo "numlines:$numlines"
+  echo "numlines:$numlines" >> $LOGFILE
   if [ numlines=3 ];then
-    echo "dssd running"
+    echo "dssd running" >> $LOGFILE
   else
-    echo "dssd not running"
+    echo "dssd not running" >> $LOGFILE
     turnon=$(sudo service dssd start)
-    echo $turnon
+    echo $turnon >> $LOGFILE
   fi
   
   res=$(service dssd-blkdev status)
   arr=( $res )
-  echo "startblkdriver res:$res"
+  echo "startblkdriver res:$res" >> $LOGFILE
   if [ ${arr[4]}="OK"];then
-    echo "blkdev service started"
+    echo "blkdev service started" >> $LOGFILE
   else
-    echo "blkdev service not started"
+    echo "blkdev service not started" >> $LOGFILE
     res=$(sudo service dssd-blkdev start)
-    echo $res
+    echo $res >> $LOGFILE
   fi 
 }
 
 #step3a
-function configblkfile {
+function configblkfile { 
+  echo "function configblkfile" >> $LOGFILE
   if [ -a /home/dc/tmpfile ]; then
     rm -rf /home/dc/tmpfile
   fi
@@ -232,7 +237,7 @@ function configblkfile {
   sudo cp /etc/sysconfig/dssd-blkdev /etc/sysconfig/dssd-blkdevorig
   cd
   output=$(pwd)
-  echo "pwd:$output"
+  echo "pwd:$output" >> $LOGFILE
   mkdir tmpdir
   cp /etc/sysconfig/dssd-blkdev /home/$USER/tmpdir/
   sed -i -e 's/DSSD_BLKDEV_VOLUME_NAME=\"\"/DSSD_BLKDEV_VOLUME_NAME=\"\testhdfsvol\"/g' tmpdir/dssd-blkdev
@@ -282,23 +287,32 @@ function clean {
 }
 
 function installhadoop {
-  sudo wget -O /etc/yum.repos.d/bigtop.repo http://archive.apache.org/dist/bigtop/bigtop-0.8.0/repos/centos6/bigtop.repo
-  sudo yum -y install hadoop\*
+  echo "function installhadoop" >> $LOGFILE
+  res=$(sudo wget -O /etc/yum.repos.d/bigtop.repo http://archive.apache.org/dist/bigtop/bigtop-0.8.0/repos/centos6/bigtop.repo)
+  echo "$res" >> $LOGFILE
+  res1=$(sudo yum -y install hadoop\*)
+  echo "$res1" >> $LOGFILE
 }
 
 
 function initnamenode {
-  sudo /etc/init.d/hadoop-hdfs-namenode init
+  echo "function initnamenode" >> $LOGFILE
+  res=$(sudo /etc/init.d/hadoop-hdfs-namenode init)
+  echo "$res" >> $LOGFILE
 }
 
 function starthadoop {
+  echo "function starthadoop" >> $LOGFILE
   for i in hadoop-hdfs-namenode hadoop-hdfs-datanode ; 
    do sudo service $i start ; 
   done
 
-  sudo /usr/lib/hadoop/libexec/init-hdfs.sh
-  sudo service hadoop-yarn-resourcemanager start
-  sudo service hadoop-yarn-nodemanager start
+  res=$(sudo /usr/lib/hadoop/libexec/init-hdfs.sh)
+  echo "$res" >> $LOGFILE
+  res1=$(sudo service hadoop-yarn-resourcemanager start)
+  echo "$res1" >> $LOGFILE
+  res2=(sudo service hadoop-yarn-nodemanager start)
+  echo "$res2" >> $LOGFILE
 }
 
 #capuure stdout/std err
@@ -328,6 +342,7 @@ function stophadoop {
 #this creates a separate set of /var/log and /var/lib dirs under
 #/var/perf and /testhdfsvol. replace DIR wirh ARG1; have to install and starthadoop first so users hdfs and yarn exist
 function createhadoopdirs {
+  echo "function createhadoopdirs" >> $LOGFILE
   sudo mkdir -p $1/lib
   sudo chown hdfs $1/lib
   sudo chgrp hdfs $1/lib
