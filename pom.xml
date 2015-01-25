@@ -37,7 +37,7 @@
                         COOK="Ducasse"
                         echo "The best cook is: $COOK"
                         echo "${example.one}"
-                        bash /Users/dc/hadoop-benchmarks/touch.sh
+                        bash /Users/dc/hadoop-benchmarks/perf.sh 
                     </script>
                 </configuration>
             </plugin>

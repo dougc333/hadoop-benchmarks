@@ -18,7 +18,7 @@ function ssh {
 
 
 #do I get the mounted directories in a ssh via ansible? Assume no
-function testjava {
+function testoraclejava {
   testsudo
   if [ -a /usr/java/latest ] ;then
     echo "/usr/java/latest found" >> $LOGFILE
@@ -31,8 +31,8 @@ function testjava {
 #assume ansible copied rpm over
 function installjava { 
   echo "installjava" >> $LOGFILE
-  cd /home/doug/hadoop-benchmarks
-  if [ -a jdk-7u71-linux-x64.rpm ];then
+  cd /home/doug
+  if [ -e jdk-7u71-linux-x64.rpm ];then
     echo "jdk downloaded" >> $LOGFILE
   else
     echo "downloading jdk" >> $LOGFILE  
@@ -40,12 +40,8 @@ function installjava {
     echo $res >> $LOGFILE
   fi
 
-  if [ -a /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm ] ;then
-    echo "jdk download ok" >> $LOGFILE
-  else 
-    echo "jdk download fail" >> $LOGFILE
-  fi 
   echo "starting rpm install" >> $LOGFILE
+ 
   sudo rpm -ihv jdk-7u71-linux-x64.rpm 
   echo "end rpm install" >> $LOGFILE
   export JAVA_HOME=/usr/java/jdk1.7.0_71/
@@ -61,7 +57,6 @@ function installjava {
 
 function installopenjdk {
   sudo yum install java-1.87.0-openjdk
-  
 }
 
 
@@ -90,10 +85,10 @@ function addsudo {
 function checkcm {  
   res=$(/opt/dssd/bin/flood ls 2>&1)
   if [ $res='volumes' ]; then
-   echo "system good"
+   echo "system good" >> $LOGFILE
   else
-   echo "cm not returning volumes; bad system"
-   echo "make sure dssd service running"
+   echo "cm not returning volumes; bad system" >>$LOGFILE
+   echo "make sure dssd service running" >>$LOGFILE
   fi
 }
 
@@ -306,6 +301,8 @@ function starthadoop {
 
 #capuure stdout/std err
 function runtests {
+  rm outputfsls
+  rm outputpi
   (time hadoop fs -ls -R / > outputfsls)
   time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples-2.4.1.jar pi 10 1000 > outputpi
   #
