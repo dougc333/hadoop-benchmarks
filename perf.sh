@@ -189,10 +189,11 @@ function verifymultipath {
   #
   res=$(sudo service multipathd status)  
   arr=( $res )
+  echo "arr:$arr" >> $LOGFILE
   if [ ${arr[2]}='stopped' ];then
     echo "multipath stoppped" >> $LOGFILE
     #verify multipathfile there and start service
-    if [ -a /etc/multipath/multipath.conf ];then 
+    if [ -a /etc/multipath.conf ];then 
       res1=$(sudo service multipathd start 2>&1)
       echo "res1: $res1" >> $LOGFILE
       arr1=( $res1 )
