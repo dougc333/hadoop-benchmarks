@@ -163,15 +163,17 @@ function finddm {
 #funny need to put multipath.conf under /etc not under /etc/multipath
 function verifymultipath {
   if [ -a /etc/multipath.conf ]; then
-    echo "multipath conf present"
+    echo "multipath conf present" >> $LOGFILE
   else
     echo "multipath.conf not present"
     if [ -a /etc/yum.repos.d ] ;then
-     echo "centos"
+     echo "centos" >> $LOGFILE
      res=$( sudo cp /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template /etc/multipath.conf)
+     echo $res >> $LOGFILE
     elif [ -a /etc/zypp ];then
-     echo "sles"
+     echo "sles" >> $LOGFILE
      res=$( sudo /opt/dssd/share/example/dm-multipath/multipath.conf.sles11sp3.dssd_template /etc/multipath.conf)
+     echo $res >> $LOGFILE
     fi
   fi
 
@@ -179,19 +181,19 @@ function verifymultipath {
   res=$(sudo service multipathd status)  
   arr=( $res )
   if [ ${arr[2]}='stopped' ];then
-    echo "multipath stoppped"
+    echo "multipath stoppped" >> $LOGFILE
     #verify multipathfile there and start service
     if [ -a /etc/multipath/multipath.conf ];then 
       res1=$(sudo service multipathd start 2>&1)
-      echo "res1: $res1"
+      echo "res1: $res1" >> $LOGFILE
       arr1=( $res1 )
       if [ ${arr1[4]}='OK' ];then
-        echo "multipathd started"
+        echo "multipathd started" >> $LOGFILE
       else
-        echo "multipathd not started debug time"
+        echo "multipathd not started debug time" >> $LOGFILE
       fi
     else
-      echo "multipath conf file does not exist, debug time"
+      echo "multipath conf file does not exist, debug time" >> $LOGFILE
     fi
   fi
 }
