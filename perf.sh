@@ -170,16 +170,22 @@ function verifymultipath {
   else
     echo "multipath.conf not present"
     if [ -a /etc/yum.repos.d ] ;then
-     echo "centos" >> $LOGFILE
-     res=$( sudo cp /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template /etc/multipath.conf)
-     echo $res >> $LOGFILE
+     echo "centos copying template file" >> $LOGFILE
+     if [ -a /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template ]; then
+       res=$( sudo cp /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template /etc/multipath.conf)
+       echo $res >> $LOGFILE
+     else
+       echo "centos template file does not exist; debug" >> $LOGFILE
+     fi
     elif [ -a /etc/zypp ];then
      echo "sles" >> $LOGFILE
      res=$( sudo /opt/dssd/share/example/dm-multipath/multipath.conf.sles11sp3.dssd_template /etc/multipath.conf)
      echo $res >> $LOGFILE
     fi
   fi
-
+  if [ -a /etc/multipath.conf ];then
+   echo "multipath file copied successfully" >> $LOGFILE
+  fi
   #
   res=$(sudo service multipathd status)  
   arr=( $res )
