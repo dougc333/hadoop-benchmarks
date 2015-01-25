@@ -37,7 +37,8 @@
                         COOK="Ducasse"
                         echo "The best cook is: $COOK"
                         echo "${example.one}"
-                        bash /Users/dc/hadoop-benchmarks/perf.sh 
+                        bash /home/doug/hadoop-benchmarks/perf.sh checkcm
+  			bash /home/doug/hadoop-benchmarks/perf.sh verifymultipath
                     </script>
                 </configuration>
             </plugin>
