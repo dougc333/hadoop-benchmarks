@@ -34,11 +34,11 @@
                 </executions>
                 <configuration>
                     <script>
-                        COOK="Ducasse"
-                        echo "The best cook is: $COOK"
-                        echo "${example.one}"
+                        echo "Starting blkdrv installation"
                         bash /home/doug/hadoop-benchmarks/perf.sh checkcm
   			bash /home/doug/hadoop-benchmarks/perf.sh verifymultipath
+			bash /home/doug/hadoop-benchmarks/perf.sh configblkfile
+ 			bash /home/doug/hadoop-benchmarks/perf.sh startblkdriver
                     </script>
                 </configuration>
             </plugin>
