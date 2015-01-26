@@ -39,6 +39,8 @@
   			bash /home/doug/hadoop-benchmarks/perf.sh verifymultipath
 			bash /home/doug/hadoop-benchmarks/perf.sh configblkfile
  			bash /home/doug/hadoop-benchmarks/perf.sh startblkdriver
+   			bash /home/doug/hadoop-benchmarks/perf.sh createblkdev
+			bash /home/doug/hadoop-bemchmarks/perf.sh finddm
                     </script>
                 </configuration>
             </plugin>
