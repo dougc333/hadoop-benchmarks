@@ -225,7 +225,7 @@ function startblkdriver {
   res=$(service dssd-blkdev status)
   arr=( $res )
   echo "startblkdriver res:$res" >> $LOGFILE
-  if [ ${arr[4]}="OK"];then
+  if [ ${arr[4]}="OK" ];then
     echo "blkdev service started" >> $LOGFILE
   else
     echo "blkdev service not started" >> $LOGFILE
