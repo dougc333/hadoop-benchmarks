@@ -14,7 +14,8 @@ scp sudoers.fix root@r2391-d5-us01:/etc/sudoers works
    installhadoopcompnents(spark,hive,hbase)
 Install blkdriver
 stophadoop
-3) checkcm
+3) initlogs
+   checkcm
 4) verifymultipath
    configblkfile
 5) createblkdev
