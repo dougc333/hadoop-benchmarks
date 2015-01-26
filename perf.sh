@@ -5,11 +5,17 @@
 LOGFILE=/home/doug/hadoop-benchmarks/logs/test.log
 
 function initlog {
-  rm -rf /home/doug/hadoop-benchmarks
-  git clone https://github.com/dougc333/hadoop-benchmarks
-  mkdir /home/doug/hadoop-benchmarks/logs
-  touch $LOGFILE
-  echo "logfile created" >> $LOGFILE 
+# too slow, makes me wait5 secs
+#  rm -rf /home/doug/hadoop-benchmarks
+#  git clone https://github.com/dougc333/hadoop-benchmarks
+  if [ -e /home/doug/hadoop-benchmarks/logs ];then
+    rm $LOGFILE
+    touch $LOGFILE
+  else
+    mkdir /home/doug/hadoop-benchmarks/logs
+    touch $LOGFILE
+    echo "logfile created" >> $LOGFILE 
+  fi
 }
 
 function ssh {
