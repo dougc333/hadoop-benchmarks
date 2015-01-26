@@ -19,7 +19,7 @@ function initlog {
 }
 
 #Usage: $1=host name
-function ssh {
+function addsshkey {
   cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
 }
 
