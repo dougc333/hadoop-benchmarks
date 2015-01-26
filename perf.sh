@@ -25,7 +25,7 @@ function addsshkey {
 
 #Usage: $1=host name
 function addsudoer {
-  scp sudoers.fix root@$1/etc/sudoers
+  scp sudoers.fix root@$1:/etc/sudoers
 }
 
 
