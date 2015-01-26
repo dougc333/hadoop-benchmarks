@@ -35,7 +35,7 @@
                 <configuration>
                     <script>
                         echo "Starting blkdrv installation"
-			bash /home/doug/haodop-benchmarks/perf.sh initlogs
+			bash /home/doug/hadoop-benchmarks/perf.sh initlogs
                         bash /home/doug/hadoop-benchmarks/perf.sh checkcm
   			bash /home/doug/hadoop-benchmarks/perf.sh verifymultipath
 			bash /home/doug/hadoop-benchmarks/perf.sh configblkfile
