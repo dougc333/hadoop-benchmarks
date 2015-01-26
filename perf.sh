@@ -23,6 +23,11 @@ function addsshkey {
   cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
 }
 
+#Usage: $1=host name
+function addsudoer {
+  scp sudoers.fix root@$1/etc/sudoers
+}
+
 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testoraclejava {
