@@ -18,8 +18,9 @@ function initlog {
   fi
 }
 
+#Usage: $1=host name
 function ssh {
-  cat ~/.ssh/id_rsa.pub | ssh doug@r2462-d5-us01 'cat >> .ssh/authorized_keys'
+  cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
 }
 
 
