@@ -248,7 +248,7 @@ function configblkfile {
   rm -rf tmpdir
   mkdir tmpdir
   cp /etc/sysconfig/dssd-blkdev /home/$USER/tmpdir/
-  sed -i -e 's/DSSD_BLKDEV_VOLUME_NAME=\"\"/DSSD_BLKDEV_VOLUME_NAME=\"/testhdfsvol\"/g' tmpdir/dssd-blkdev
+  sed -i -e 's/DSSD_BLKDEV_VOLUME_NAME=\"\"/DSSD_BLKDEV_VOLUME_NAME=\"\/testhdfsvol\"/g' tmpdir/dssd-blkdev
   sed -i -e 's/DSSD_BLKDEV_LOGFILE_NAME=\"\"/DSSD_BLKDEV_LOGFILE_NAME=\"\/var\/log\/blkdev.log\"/g' tmpdir/dssd-blkdev
   sudo mv /etc/sysconfig/dssd-blkdev /etc/sysconfig/dssd-blkdevold
   sudo cp tmpdir/dssd-blkdev /etc/sysconfig/dssd-blkdev
