@@ -18,19 +18,8 @@ function initlog {
   fi
 }
 
-#Usage: $1=host name
-function addsshkey {
-  cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
-}
-
-function installmvnplugin {
-  cd /home/doug/bash-maven-plugin
-  mvn clean install
-}
-
-#Usage: $1=host name
-function addsudoer {
-  scp sudoers.fix root@$1:/etc/sudoers
+function ssh {
+  cat ~/.ssh/id_rsa.pub | ssh doug@r2462-d5-us01 'cat >> .ssh/authorized_keys'
 }
 
 
@@ -265,7 +254,7 @@ function configblkfile {
   rm -rf tmpdir
   mkdir tmpdir
   cp /etc/sysconfig/dssd-blkdev /home/$USER/tmpdir/
-  sed -i -e 's/DSSD_BLKDEV_VOLUME_NAME=\"\"/DSSD_BLKDEV_VOLUME_NAME=\"\/testhdfsvol\"/g' tmpdir/dssd-blkdev
+  sed -i -e 's/DSSD_BLKDEV_VOLUME_NAME=\"\"/DSSD_BLKDEV_VOLUME_NAME=\"testhdfsvol\"/g' tmpdir/dssd-blkdev
   sed -i -e 's/DSSD_BLKDEV_LOGFILE_NAME=\"\"/DSSD_BLKDEV_LOGFILE_NAME=\"\/var\/log\/blkdev.log\"/g' tmpdir/dssd-blkdev
   sudo mv /etc/sysconfig/dssd-blkdev /etc/sysconfig/dssd-blkdevold
   sudo cp tmpdir/dssd-blkdev /etc/sysconfig/dssd-blkdev
@@ -345,7 +334,8 @@ function runtests {
   rm outputfsls
   rm outputpi
   (time hadoop fs -ls -R / > outputfsls)
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples-2.4.1.jar pi 10 1000 > outputpi
+multipath conf present
+multipath file copie  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples-2.4.1.jar pi 10 1000 > outputpi
   #
   time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOwrite64_1G.txt
   time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOread64_1G.txt
