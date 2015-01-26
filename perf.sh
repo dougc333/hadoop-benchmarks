@@ -131,7 +131,7 @@ function createblkdev {
     res=$(/opt/dssd/bin/flood create -V testhdfsvol -t block -F 4096 -l 200G TestObj1 2>&1)
     echo "creating block device:$res" >> $LOGFILE
     arr=( $res )
-    if [ $res='' ];then
+    if [ -z "$res" ];then
       echo "create completed" >> $LOGFILE
     else
       echo "create did not complete:$res debug" >> $LOGFILE
