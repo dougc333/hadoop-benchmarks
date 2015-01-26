@@ -23,6 +23,11 @@ function addsshkey {
   cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
 }
 
+function installmvnplugin {
+  cd /home/doug/bash-maven-plugin
+  mvn clean install
+}
+
 #Usage: $1=host name
 function addsudoer {
   scp sudoers.fix root@$1:/etc/sudoers
