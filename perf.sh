@@ -32,7 +32,7 @@ function addsudoer {
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testoraclejava {
   testsudo
-  if [ -a /usr/java/latest ] ;then
+  if [ -e /usr/java/latest ] ;then
     echo "/usr/java/latest found" >> $LOGFILE
   else   
     echo "/usr/java/latest not found" >> $LOGFILE
@@ -59,7 +59,7 @@ function installjava {
   export JAVA_HOME=/usr/java/jdk1.7.0_71/
   export PATH=$PATH:$JAVA_HOME/bin
   
-  if [ -a /usr/java/latest ];then
+  if [ -e /usr/java/latest ];then
     echo "java successfully installed">>$LOGFILE
   else 
     echo "no java" >> $LOGFILE
@@ -114,7 +114,7 @@ function checkcm {
 #creates /testhdfsvol directory
 function createblkdev {
   echo "function createblkdev" >> $LOGFILE
-  if [ -a /testhdfsvol ] ;then
+  if [ -e /testhdfsvol ] ;then
     echo "/testhdfsvol exists" >> $LOGFILE
   else
     echo "creating /testhdfsvol for blockdev"
@@ -123,7 +123,7 @@ function createblkdev {
     res2=$( sudo chgrp users /testhdfsvol 2>&1 )
   fi
 
-  if [ -a /testhdfsvol ];then
+  if [ -e /testhdfsvol ];then
     echo "/testhdfs vol successfully created and/or aleady exists" >> $LOGFILE
   else
     echo "/testhdfsvol not created;debug" >> $LOGFILE
@@ -199,25 +199,25 @@ function verifytesthdfsvol {
 #funny need to put multipath.conf under /etc not under /etc/multipath
 function verifymultipath {
   echo "function verifymultipath" >> $LOGFILE
-  if [ -a /etc/multipath.conf ]; then
+  if [ -e /etc/multipath.conf ]; then
     echo "multipath conf present" >> $LOGFILE
   else
     echo "multipath.conf not present"
-    if [ -a /etc/yum.repos.d ] ;then
+    if [ -e /etc/yum.repos.d ] ;then
      echo "centos copying template file" >> $LOGFILE
-     if [ -a /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template ]; then
+     if [ -e /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template ]; then
        res=$( sudo cp /opt/dssd/share/example/dm-multipath/multipath.conf.el6.dssd_template /etc/multipath.conf)
        echo $res >> $LOGFILE
      else
        echo "centos template file does not exist; debug" >> $LOGFILE
      fi
-    elif [ -a /etc/zypp ];then
+    elif [ -e /etc/zypp ];then
      echo "sles" >> $LOGFILE
      res=$( sudo /opt/dssd/share/example/dm-multipath/multipath.conf.sles11sp3.dssd_template /etc/multipath.conf)
      echo $res >> $LOGFILE
     fi
   fi
-  if [ -a /etc/multipath.conf ];then
+  if [ -e /etc/multipath.conf ];then
    echo "multipath file copied successfully" >> $LOGFILE
   fi
   #
@@ -227,7 +227,7 @@ function verifymultipath {
   if [ ${arr[2]}='stopped' ];then
     echo "multipath stoppped" >> $LOGFILE
     #verify multipathfile there and start service
-    if [ -a /etc/multipath.conf ];then 
+    if [ -e /etc/multipath.conf ];then 
       res1=$(sudo service multipathd start 2>&1)
       echo "res1: $res1" >> $LOGFILE
       arr1=( $res1 )
@@ -271,7 +271,7 @@ function startblkdriver {
 #step3a
 function configblkfile { 
   echo "function configblkfile" >> $LOGFILE
-  if [ -a /home/dc/tmpfile ]; then
+  if [ -e /home/dc/tmpfile ]; then
     rm -rf /home/dc/tmpfile
   fi
   sudo chmod 666 /etc/sysconfig/dssd-blkdev
@@ -294,17 +294,17 @@ function configblkfile {
 #remove hadoop from system
 #clean up /var/log; /var/lib or /testhdfsvol/log; testhdfsvol/lib
 function restore {
-  if [ -a /etc/sudoers.orig ];then
+  if [ -e /etc/sudoers.orig ];then
     echo "restoring sudoers"
     sudo mv /etc/sudoers.orig /etc/sudoers
   fi
 
-  if [ -a /etc/sysconfig/dssd-blkdevorig ];then
+  if [ -e /etc/sysconfig/dssd-blkdevorig ];then
     echo  "restoring blkdev file"
     sudo mv /etc/sysconfig/dssd-blkdevorig /etc/sysconfig/dssd-blkdev
     sudo chmod 644 /etc/sysconfig/dssd-blkdev
     sudo rm /etc/sysconfig/dssd-blkdevold
-    if [ -a tmpdir ];then
+    if [ -e tmpdir ];then
       rm -rf tmpdir
     fi 
   fi
@@ -425,8 +425,8 @@ function modworkingdir {
   #modify working directory in hadooop-hdfs-namenode, hadoop-hdfs-datanode, hadoop-yarn-resourcemanager, hadoop-yarn-nodemanager
   cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
   cp tmpsvc/hadoop-hdfs-namenode.orig tmpsvc/savemenn
-  sudo sed 's/WORKING_DIR\=\"\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' tmpsvc/savemenn
-  sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
+  sudo sed 's/WORKING_DIR\=\"\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' tmpsvc/savemenn > tmpsvc/savemenn1
+  sudo cp tmpsvc/savemenn1 /etc/init.d/hadoop-hdfs-namenode
 
 #  cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
 #  cp tmpsvc/hadoop-hdfs-datanode.orig tmpsvc/savemedn
@@ -463,7 +463,7 @@ function modworkingdir {
 #modify hadoop-env.sh,yarn-env.sh, mapred-env.sh for XX_LOG_DIR
 function modenv {
   cd
-  if [ -a tmpenv ];then
+  if [ -e tmpenv ];then
     rm -rf tmpenv
   fi
   mkdir tmpenv
