@@ -178,7 +178,7 @@ function finddm {
 
 #step5
 function verifytesthdfsvol {
-  echo "testhdfsvol function" >> $LOFGILE
+  echo "testhdfsvol function" >> $LOGFILE
   if [ -e /testhdfsvol ];then
     echo "testhdfsvol exists" >> $LOGFILE
     if [ -e /testhdfsvol/lost+found ];then
