@@ -428,35 +428,35 @@ function modworkingdir {
   sudo sed 's/WORKING_DIR\=\"\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemenn
   sudo cp savemenn /etc/init.d/hadoop-hdfs-namenode
 
-  cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
-  cp tmpsvc/hadoop-hdfs-datanode.orig savemedn
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemedn
-  sudo cp savemedn /etc/init.d/hadoop-hdfs-datanode
+#  cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
+#  cp tmpsvc/hadoop-hdfs-datanode.orig savemedn
+#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemedn
+#  sudo cp savemedn /etc/init.d/hadoop-hdfs-datanode
 
-  cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
-  cp tmpsvc/hadoop-yarn-resourcemanager tmpsvc/savemerm
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemerm
-  sudo cp savemerm /etc/init.d/hadoop-yarn-resourcemanager
+#  cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
+#  cp tmpsvc/hadoop-yarn-resourcemanager tmpsvc/savemerm
+#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemerm
+#  sudo cp savemerm /etc/init.d/hadoop-yarn-resourcemanager
 
-  cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
-  cp tmpsvc/hadoop-yarn-nodemanager.orig savemenm
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemenm
-  sudo cp savemenm /etc/init.d/hadoop-yarn-nodemanager
+#  cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
+#  cp tmpsvc/hadoop-yarn-nodemanager.orig savemenm
+#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemenm
+#  sudo cp savemenm /etc/init.d/hadoop-yarn-nodemanager
    
-  cp /etc/init.d/hadoop-yarn-proxyserver tmpsvc/hadoop-yarn-proxyserver.orig
-  cp tmpsvc/hadoop-yarn-proxyserver.orig savemeproxy
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemeproxy                 
-  sudo cp savemeproxy /etc/init.d/hadoop-yarn-proxyserver
+#  cp /etc/init.d/hadoop-yarn-proxyserver tmpsvc/hadoop-yarn-proxyserver.orig
+#  cp tmpsvc/hadoop-yarn-proxyserver.orig savemeproxy
+#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemeproxy                 
+#  sudo cp savemeproxy /etc/init.d/hadoop-yarn-proxyserver
 
-  cp /etc/init.d/hadoop-httpfs tmpsvc/hadoop-httpfs.orig
-  cp tmpsvc/hadoop-httpfs.orig savemehttpfs
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemehttpfs                 
-  sudo cp savemehttpfs /etc/init.d/hadoop-httpfs
+#  cp /etc/init.d/hadoop-httpfs tmpsvc/hadoop-httpfs.orig
+#  cp tmpsvc/hadoop-httpfs.orig savemehttpfs
+#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemehttpfs                 
+#  sudo cp savemehttpfs /etc/init.d/hadoop-httpfs
 
-  cp /etc/init.d/hadoop-hdfs-zkfc tmpsvc/hadoop-hdfs-zkfc.orig
-  cp tmpsvc/hadoop-hdfs-zkfc.orig savemezk
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemezk
-  sudo cp savemezk /etc/init.d/hadoop-hdfs-zkfc
+#  cp /etc/init.d/hadoop-hdfs-zkfc tmpsvc/hadoop-hdfs-zkfc.orig
+#  cp tmpsvc/hadoop-hdfs-zkfc.orig savemezk
+#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemezk
+#  sudo cp savemezk /etc/init.d/hadoop-hdfs-zkfc
 
 }
 
