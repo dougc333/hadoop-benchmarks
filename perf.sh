@@ -67,6 +67,8 @@ function installjava {
 }
 
 
+#not used for now.. install oracle jdk for hadoop; is easier to use openjdk1.7
+#bc this is in the centos repos 
 function installopenjdk {
   sudo yum install java-1.87.0-openjdk
 }
@@ -415,26 +417,47 @@ function createhadoopdirs {
   sudo chgrp hadoop $1/log/hadoop-yarn
 }
 
-#modify hadoop daemons, can prob set from hadoop-env.sh; test
+#add hadoop-httpfs, hadoop-hdfs-zkfc
 #set $1 to /testhdfsvol or /var/perf/ 
 function modworkingdir {
-  #modify working directory in hadooop-hdfs-namenode, hadoop-hdfs-datanode, hadoop-hdfs-resourcemanager, hadoop-hdfs-nodemanager
-  cp /etc/init.d/hadoop-hdfs-namenode savemenn
-  sudo sed 's/WORKING_DIR\=\"\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemenn > savemenn_fixed
-  sudo cp savemenn_fixed /etc/init.d/hadoop-hdfs-namenode
+  cd
+  mkdir tmpsvc
+  #modify working directory in hadooop-hdfs-namenode, hadoop-hdfs-datanode, hadoop-yarn-resourcemanager, hadoop-yarn-nodemanager
+  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
+  cp tmpsvc/hadoop-hdfs-namenode.orig tmpsvc savemenn
+  sudo sed 's/WORKING_DIR\=\"\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemenn
+  sudo cp savemenn /etc/init.d/hadoop-hdfs-namenode
 
-  cp /etc/init.d/hadoop-hdfs-datanode savemedn
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemedn > savemedn_fixed
-  sudo cp savemedn_fixed /etc/init.d/hadoop-hdfs-datanode
+  cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
+  cp tmpsvc/hadoop-hdfs-datanode.orig savemedn
+  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' savemedn
+  sudo cp savemedn /etc/init.d/hadoop-hdfs-datanode
 
-  cp /etc/init.d/hadoop-yarn-resourcemanager savemerm
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemerm > savemerm_fixed
-  sudo cp savemerm_fixed /etc/init.d/hadoop-yarn-resourcemanager
+  cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
+  cp tmpsvc/hadoop-yarn-resourcemanager tmpsvc/savemerm
+  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemerm
+  sudo cp savemerm /etc/init.d/hadoop-yarn-resourcemanager
 
-  cp /etc/init.d/hadoop-yarn-nodemanager savemenm
-  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemenm > savemenm_fixed
-  sudo cp savemenm_fixed /etc/init.d/hadoop-yarn-nodemanager
-  # rm saveme*
+  cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
+  cp tmpsvc/hadoop-yarn-nodemanager.orig savemenm
+  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemenm
+  sudo cp savemenm /etc/init.d/hadoop-yarn-nodemanager
+   
+  cp /etc/init.d/hadoop-yarn-proxyserver tmpsvc/hadoop-yarn-proxyserver.orig
+  cp tmpsvc/hadoop-yarn-proxyserver.orig savemeproxy
+  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemeproxy                 
+  sudo cp savemeproxy /etc/init.d/hadoop-yarn-proxyserver
+
+  cp /etc/init.d/hadoop-httpfs tmpsvc/hadoop-httpfs.orig
+  cp tmpsvc/hadoop-httpfs.orig savemehttpfs
+  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemehttpfs                 
+  sudo cp savemehttpfs /etc/init.d/hadoop-httpfs
+
+  cp /etc/init.d/hadoop-hdfs-zkfc tmpsvc/hadoop-hdfs-zkfc.orig
+  cp tmpsvc/hadoop-hdfs-zkfc.orig savemezk
+  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' savemezk
+  sudo cp savemezk /etc/init.d/hadoop-hdfs-zkfc
+
 }
 
 #modify hadoop-env.sh,yarn-env.sh, mapred-env.sh for XX_LOG_DIR
