@@ -43,6 +43,9 @@
    			bash /home/doug/hadoop-benchmarks/perf.sh createblkdev
 			bash /home/doug/hadoop-benchmarks/perf.sh finddm
    			bash /home/doug/hadoop-benchmarks/perf.sh verifytesthdfsvol
+			bash /home/doug/hadoop-benchmarks/perf.sh initnamenode
+			bash /home/doug/hadoop-benchmarks/perf.sh starthadoop
+			bash /home/doug/hadoop-benchmarks/perf.sh runtests
                     </script>
                 </configuration>
             </plugin>
