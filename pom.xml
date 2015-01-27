@@ -42,6 +42,7 @@
  			bash /home/doug/hadoop-benchmarks/perf.sh startblkdriver
    			bash /home/doug/hadoop-benchmarks/perf.sh createblkdev
 			bash /home/doug/hadoop-benchmarks/perf.sh finddm
+   			bash /home/doug/hadoop-benchmarks/perf.sh verifytesthdfsvol
                     </script>
                 </configuration>
             </plugin>

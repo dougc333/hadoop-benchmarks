@@ -88,10 +88,14 @@ function testsudo {
 }
 
 #
-#addus $USER to sudoers file
+#addus $USER to sudoers file; 
 function addsudo {
-  sudo cp /etc/sudoers /etc/sudoers.orig
-  sudo sed '/root[[:space:]]*ALL/a  $USER\tALL=(ALL)\tALL' /etc/sudoers
+  #modify to scp command? modify to where this is run outside of maven
+  cd #assume in hadoop-benchmarks
+  sudo scp root@/$1:/etc/sudoers sudoers.orig
+  cp sudoers.orig sudoers.fixtest
+  sudo sed '/root[[:space:]]*ALL/a  $USER\tALL=(ALL)\tALL' sudoers.fixtest
+  #verify this works. Right now we have put sudoers.fix w/hardcoded user in hadoop-benchmarks
 }
 
 function checkcm {  
@@ -172,6 +176,22 @@ function finddm {
   #where do we chmod and chgrp for /testhdfsvol? 
 }
 
+#step5
+function verifytesthdfsvol {
+  echo "testhdfsvol function" >> $LOFGILE
+  if [ -e /testhdfsvol ];then
+    echo "testhdfsvol exists" >> $LOGFILE
+    if [ -e /testhdfsvol/lost+found ];then
+      echo "testhdfsvol successfully created found lost+found" >> $LOGFILE
+      createhadoopdirs /testhdfsvol
+    else
+      echo "lost+found not found" >> $LOGFILE
+    fi
+  else
+    echo "testhdfsvol does not exist" >> $LOGFILE
+  fi 
+  
+}
 
 #step 2
 #funny need to put multipath.conf under /etc not under /etc/multipath
