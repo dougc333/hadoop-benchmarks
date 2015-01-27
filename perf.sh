@@ -424,9 +424,8 @@ function modworkingdir {
   mkdir tmpsvc
   #modify working directory in hadooop-hdfs-namenode, hadoop-hdfs-datanode, hadoop-yarn-resourcemanager, hadoop-yarn-nodemanager
   cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
-  cp tmpsvc/hadoop-hdfs-namenode.orig tmpsvc/savemenn
-  sudo sed 's/WORKING_DIR\=\"\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' tmpsvc/savemenn > tmpsvc/savemenn1
-  sudo cp tmpsvc/savemenn1 /etc/init.d/hadoop-hdfs-namenode
+  sudo sed 's/WORKING_DIR\=/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' tmpsvc/hadoop-hdfs-namenode.orig > tmpsvc/savemenn
+  sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
 
 #  cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
 #  cp tmpsvc/hadoop-hdfs-datanode.orig tmpsvc/savemedn
