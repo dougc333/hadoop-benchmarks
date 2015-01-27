@@ -46,6 +46,7 @@
 			bash /home/doug/hadoop-benchmarks/perf.sh initnamenode
 			bash /home/doug/hadoop-benchmarks/perf.sh starthadoop
 			bash /home/doug/hadoop-benchmarks/perf.sh runtests
+			bash /home/doug/hadoop-benchmarks/perf.sh stophadoop
                     </script>
                 </configuration>
             </plugin>
