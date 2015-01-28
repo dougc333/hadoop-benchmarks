@@ -537,7 +537,7 @@ function modsite {
   if [ -s tmpsite/hdfs-site.xml ] ;then
     sudo cp tmpsite/hdfs-site.xml /etc/hadoop/conf/
   fi
-  sudo chown 0755 /etc/hadoop/conf/hdfs-site.xml
+  sudo chmod 0755 /etc/hadoop/conf/hdfs-site.xml
 
   sudo chmod 0666 /etc/hadoop/conf/mapred-site.xml
   cp /etc/hadoop/conf/mapred-site.xml tmpsite/mapred-site.xmlorig
