@@ -417,8 +417,10 @@ function createhadoopdirs {
   sudo chgrp hadoop $1/log/hadoop-yarn
 }
 
-#add hadoop-httpfs, hadoop-hdfs-zkfc
-#set $1 to /testhdfsvol or /var/perf/ 
+
+#for /etc/init.d/hadoop-hdfs-namenode,datanode modifies WORKING_DIR from /var/lib/hadoop-hdfs to /testhdfsvol/lib/hadoop-hdfs
+#for /etc/init.d/hadoop-hdfs-nodemanager,resourcemanager modifies WORKING_DIR from /var/lib/hadoop-yarn to /testhdfsvol/lib/hadoop-yarn
+#for hadoop-hdfs-zkfc modifles WORKING_DIR from /var/lib/hadoop-hdfs to /testhdfsvol/lib/hadoop-hdfs 
 function modworkingdir {
 #  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
    [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
@@ -449,7 +451,7 @@ function modenv {
     rm -rf tmpenv
   fi
   mkdir tmpenv
-  chmod 777 tmpenv
+  #chmod 777 tmpenv
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/hadoop-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/yarn-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/mapred-env.sh
@@ -500,7 +502,17 @@ function modyarndaemon {
   sudo mv tmpdaemon/yarn-daemon.sh /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
 }
 #add mrjobshistorydaemon
+function modjobhistdaemon {
+  sudo cp /usr/lib/hadoop-yarn/sbin/yarn-daemon tmpdaemon/yarn-daemon.shorig
 
+}
+
+#modify httpfs-config.sh
+function modhttpfs {
+  cp /usr/lib/hadoop/hadoop/libexec/httpfs-config.sh ~/httpfs-config.sh.orig
+  #modify by adding env var HTTPFS_LOG=/testhdfsvol/log/httpfs
+
+}
 
 #modify hdfs-site.xml,yarn-site.xml, mapred-site.xml
 #$1 is /testhdfsvol for blockdev or /var/perf for local
