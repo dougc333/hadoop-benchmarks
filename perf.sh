@@ -518,26 +518,5 @@ function modhttpfs {
   #modify by adding env var HTTPFS_LOG=/testhdfsvol/log/httpfs
 
 }
-
-#there is nothing in the site files
-#modify hdfs-site.xml,yarn-site.xml, mapred-site.xml
-#$1 is /testhdfsvol for blockdev or /var or /var/perf for local
-#not true, only works first time changing var to /testhdfsvol; doesnt work converting /testhdfsvol back to original
-#there is nothning in these files!
-function modsitefiles {
-  cd
-  if [ -d tmpsite ];then
-    rm -rf tmpsite
-  fi
-  mkdir tmpsite
-  sudo cp /etc/hadoop/conf/hdfs-site.xml tmpsite/hdfs-site.xmlorig
-  sed 's/var/$1/g' hdfs-site.xmlorig > /etc/hadoop/conf/hdfs-site.xml
-
-  sudo cp /etc/hadoop/conf/mapred-site.xml tmpsite/mapred-site.xmlorig
-  sudo sed 's/var/$1/g' mapred-site.xmlorig > /etc/hadoop/conf/mapred-site.xml
-
-  sudo cp /etc/hadoop/conf/yarn-site.xml tmpsite/yarn-site.xmlorig
-  sed 's/var/$1/g' yarn-site.xmlorig > /etc/hadoop/conf/yarn-site.xml
-}
  
 $@
