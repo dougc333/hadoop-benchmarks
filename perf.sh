@@ -495,9 +495,9 @@ function moddaemon {
   if [ -s tmpdaemon/hadoop-daemon.sh ];then
     sudo cp tmpdaemon/hadoop-daemon.sh /usr/lib/hadoop/sbin/hadoop-daemon.sh
   fi
-  chmod 0755 /usr/lib/hadoop/sbin/hadoop-daemon.sh
-  sudo chown root /usr/lib/hadoop/sbin/hadoop-daemon.sh
-  sudo chgrp root /usr/lib/hadoop/sbin/hadoop-daemon.sh
+  sudo chmod 0755 /usr/lib/hadoop/sbin/hadoop-daemon.sh
+  #sudo chown root /usr/lib/hadoop/sbin/hadoop-daemon.sh
+  #sudo chgrp root /usr/lib/hadoop/sbin/hadoop-daemon.sh
 
   sudo chmod 0666 /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
   cp /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh tmpdaemon/yarn-daemon.shorig
@@ -507,9 +507,9 @@ function moddaemon {
   if [ -s tmpdaemon/yarn-daemon.sh ];then
     sudo cp tmpdaemon/yarn-daemon.sh /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
   fi
-  chmod 0755 /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
-  sudo chown root /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
-  sudo chgrp root /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
+  sudo chmod 0755 /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
+  #sudo chown root /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
+  #sudo chgrp root /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
 }
 
 #modify httpfs-config.sh
