@@ -11,6 +11,7 @@ function initlog {
   if [ -e /home/doug/hadoop-benchmarks/logs ];then
     rm $LOGFILE
     touch $LOGFILE
+    echo "logfile cleared" >> $LOGFILE
   else
     mkdir /home/doug/hadoop-benchmarks/logs
     touch $LOGFILE
@@ -289,10 +290,11 @@ function configblkfile {
 }
 
 
-#restore system back to original state 
-#replace dssd-blkdev with original
+#restore dssd-blkdev with original
 #remove hadoop from system
-#clean up /var/log; /var/lib or /testhdfsvol/log; testhdfsvol/lib
+#removedirs /var/log; /var/lib or /testhdfsvol/log; testhdfsvol/lib
+#remove daemons in /etc/init.d
+#restore orig sudoers file
 function restore {
   if [ -e /etc/sudoers.orig ];then
     echo "restoring sudoers"
