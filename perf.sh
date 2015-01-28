@@ -487,10 +487,14 @@ function moddaemon {
    rm -rf tmpdaemon
   fi
   mkdir tmpdaemon
-#  sudo chmod 0666 /usr/lib/hadoop/sbin/hadoop-daemon.sh
+# sudo chmod 0666 /usr/lib/hadoop/sbin/hadoop-daemon.sh
   sudo cp /usr/lib/hadoop/sbin/hadoop-daemon.sh tmpdaemon/hadoop-daemon.shorig 
-  awk -v n=41 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpdaemon/hadoop-daemon.shorig > tmpdaemon/hadoop-daemon.sh 
-  sudo cp tmpdaemon/hadoop-daemon.sh /usr/lib/hadoop/sbin/hadoop-daemon.sh
+  if [ -e tmpdaemon/hadoop-daemon.shorig ];then
+    awk -v n=41 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpdaemon/hadoop-daemon.shorig > tmpdaemon/hadoop-daemon.sh 
+  fi
+  if [ -s tmpdaemon/hadoop-daemon.sh ];then
+    sudo cp tmpdaemon/hadoop-daemon.sh /usr/lib/hadoop/sbin/hadoop-daemon.sh
+  fi
   chmod 0755 /usr/lib/hadoop/sbin/hadoop-daemon.sh
   sudo chown root /usr/lib/hadoop/sbin/hadoop-daemon.sh
   sudo chgrp root /usr/lib/hadoop/sbin/hadoop-daemon.sh
