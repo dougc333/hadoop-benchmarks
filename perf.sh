@@ -428,9 +428,15 @@ function modworkingdir {
 
    cd ~/hadoop-benchmarks/tmpsvc
    for modfile in $( ls *.orig ); do
-     echo $modfile
+     echo "modifying WORKING_DIR for $modfile" >> $LOGFILE
      sed 's/^WORKING_DIR.*/WORKING_DIR=\"\/testhdfsvol\/lib\/hadoop-hdfs\"/' $modfile > $modfile.mod
      #sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
+   done
+
+   for cpfile in $( ls *.mod ); do
+     echo "copying to /etc/init.d" >> $LOGFILE
+     y=${cpfile%%.*}
+     echo "new file name $y"
    done
 
 }
