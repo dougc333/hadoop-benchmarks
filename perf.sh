@@ -488,7 +488,7 @@ function moddaemon {
   fi
   mkdir tmpdaemon
   sudo chmod 0666 /usr/lib/hadoop/sbin/hadoop-daemon.sh
-  sudo cp /usr/lib/hadoop/sbin/hadoop-daemon.sh tmpdaemon/hadoop-daemon.shorig 
+  cp /usr/lib/hadoop/sbin/hadoop-daemon.sh tmpdaemon/hadoop-daemon.shorig 
   if [ -e tmpdaemon/hadoop-daemon.shorig ];then
     awk -v n=41 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpdaemon/hadoop-daemon.shorig > tmpdaemon/hadoop-daemon.sh 
   fi
@@ -500,7 +500,7 @@ function moddaemon {
   sudo chgrp root /usr/lib/hadoop/sbin/hadoop-daemon.sh
 
   sudo chmod 0666 /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
-  sudo cp /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh tmpdaemon/yarn-daemon.shorig
+  cp /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh tmpdaemon/yarn-daemon.shorig
   if [ -e tmpdaemon/yarn-daemon.shorig ];then
     awk -v n=41 -v s="YARN_LOG_DIR=$1/log/hadoop-yarn" 'NR == n {print s} {print}' tmpdaemon/yarn-daemon.shorig > tmpdaemon/yarn-daemon.sh
   fi
