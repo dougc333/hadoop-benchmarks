@@ -496,7 +496,7 @@ function moddaemon {
   sudo chgrp root /usr/lib/hadoop/sbin/hadoop-daemon.sh
 
   chmod 0666 /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
-  sudo cp /usr/lib/hadoop-yarn/sbin/yarn-daemon tmpdaemon/yarn-daemon.shorig
+  sudo cp /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh tmpdaemon/yarn-daemon.shorig
   awk -v n=41 -v s="YARN_LOG_DIR=$1/log/hadoop-yarn" 'NR == n {print s} {print}' tmpdaemon/yarn-daemon.shorig > tmpdaemon/yarn-daemon.sh
   sudo cp tmpdaemon/yarn-daemon.sh /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
   chmod 0755 /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
