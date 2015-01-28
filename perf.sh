@@ -426,6 +426,7 @@ function createhadoopdirs {
 #assumes the /etc/init.d/hadoop-yarn-resourcemanager.orig, /etc/init.d/hadoop-yarn-nodemanager
 #/etc/init.d/hadoop-hdfs-namenode, /etc/init.d/hadoop-hdfs-datanode are scp copied to /tmpsvc
 function modworkingdir {
+# don't automate the copy. Too confusing to user to have multiple versions of files
 #  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
    [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
    [ ! -f tmpsvc/hadoop-hdfs-datanode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
@@ -451,17 +452,16 @@ function modworkingdir {
 #modify hadoop-env.sh,yarn-env.sh, mapred-env.sh for XX_LOG_DIR
 function modenv {
   cd
-  if [ -e tmpenv ];then
+  if [ -d tmpenv ];then
     rm -rf tmpenv
   fi
   mkdir tmpenv
-  #chmod 777 tmpenv
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/hadoop-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/yarn-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/mapred-env.sh
   sudo cp /usr/lib/hadoop/etc/hadoop/hadoop-env.sh tmpenv/hadoop-env.shorig
-  cp tmpenv/hadoop-env.shorig tmpenv/hadoop-env.sh
-  awk -v n=20 -v s="export HADOOP_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/hadoop-env.sh 
+  tmpenv/hadoop-env.shorig
+  awk -v n=20 -v s="export HADOOP_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/hadoop-env.shorig > tmpenv/hadoop-env.sh 
 #  sudo cp /usr/lib/hadoop/etc/hadoop/yarn-env.sh tmpenv/yarn-env.shorig
 #  cp tmpenv/yarn-env.shorig tmpenv/yarn-env.sh
 #  awk -v n=21 -v s="export YARN_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/yarn-env.sh
