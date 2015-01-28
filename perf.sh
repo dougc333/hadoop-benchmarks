@@ -450,7 +450,8 @@ function modworkingdir {
 }
 
 #modify hadoop-env.sh,yarn-env.sh, mapred-env.sh for XX_LOG_DIR
-#run with bash perf.sh modenv /testhdfsvol/log/hadoop-hdfs or /var/log/hadoop-hdfs for hadoop 
+#run with bash perf.sh modenv /testhdfsvol for dssd blkdrv 
+#or /var for hadoop (should be default if files are restored, should not need to run /var) 
 #
 function modenv {
   cd
@@ -468,7 +469,7 @@ function modenv {
 #  sudo cp /usr/lib/hadoop/etc/hadoop/yarn-env.sh tmpenv/yarn-env.shorig
 #  cp tmpenv/yarn-env.shorig tmpenv/yarn-env.sh
 #  awk -v n=21 -v s="export YARN_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/yarn-env.sh
-#  sudo cp tmpenv/hadoop-env.sh /usr/lib/hadoop/etc/hadoop/hadoop-env.sh 
+  sudo cp tmpenv/hadoop-env.sh /usr/lib/hadoop/etc/hadoop/hadoop-env.sh 
 #  sudo cp /usr/lib/hadoop/etc/hadoop/mapred-env.sh tmpenv/mapred-env.shorig
 #  cp tmpenv/mapred-env.shorig tmpenv/mapred-env.sh
 #  sudo awk -v n=21 -v s="export HADOOP_MAPRED_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/mapred-env.sh
