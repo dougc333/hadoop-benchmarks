@@ -461,7 +461,7 @@ function modenv {
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/yarn-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/mapred-env.sh
   sudo cp /usr/lib/hadoop/etc/hadoop/hadoop-env.sh tmpenv/hadoop-env.shorig
-  tmpenv/hadoop-env.shorig
+  
   awk -v n=20 -v s="export HADOOP_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/hadoop-env.shorig > tmpenv/hadoop-env.sh 
 #  sudo cp /usr/lib/hadoop/etc/hadoop/yarn-env.sh tmpenv/yarn-env.shorig
 #  cp tmpenv/yarn-env.shorig tmpenv/yarn-env.sh
