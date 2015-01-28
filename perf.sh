@@ -96,7 +96,7 @@ function addsudo {
   cd #assume in hadoop-benchmarks
   sudo scp root@/$1:/etc/sudoers sudoers.orig
   cp sudoers.orig sudoers.fixtest
-  sudo sed '/root[[:space:]]*ALL/a  $USER\tALL=(ALL)\tALL' sudoers.fixtest
+  #sudo sed '/root[[:space:]]*ALL/a  $USER\tALL=(ALL)\tALL' sudoers.fixtest
   #verify this works. Right now we have put sudoers.fix w/hardcoded user in hadoop-benchmarks
 }
 
@@ -420,42 +420,18 @@ function createhadoopdirs {
 #add hadoop-httpfs, hadoop-hdfs-zkfc
 #set $1 to /testhdfsvol or /var/perf/ 
 function modworkingdir {
-  cd
-  mkdir tmpsvc
-  #modify working directory in hadooop-hdfs-namenode, hadoop-hdfs-datanode, hadoop-yarn-resourcemanager, hadoop-yarn-nodemanager
-  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
-  sudo sed 's/^WORKING_DIR.*/WORKING_DIR=\"'$1'\/lib\/hadoop-hdfs\"/' tmpsvc/hadoop-hdfs-namenode.orig > tmpsvc/savemenn
-  sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
+#  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
+   [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
+   [ ! -f tmpsvc/hadoop-hdfs-datanode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
+   [ ! -f tmpsvc/hadoop-yarn-nodemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
+   [ ! -f tmpsvc/hadoop-yarn-resourcemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
 
-#  cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
-#  cp tmpsvc/hadoop-hdfs-datanode.orig tmpsvc/savemedn
-#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-hdfs\"/' tmpsvc/savemedn
-#  sudo cp tmpsvc/savemedn /etc/init.d/hadoop-hdfs-datanode
-
-#  cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
-#  cp tmpsvc/hadoop-yarn-resourcemanager tmpsvc/savemerm
-#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' tmpsvc/savemerm
-#  sudo cp tmpsvc/savemerm /etc/init.d/hadoop-yarn-resourcemanager
-
-#  cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
-#  cp tmpsvc/hadoop-yarn-nodemanager.orig tmpsvc/savemenm
-#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' tmpsvc/savemenm
-#  sudo cp tmpsvc/savemenm /etc/init.d/hadoop-yarn-nodemanager
-   
-#  cp /etc/init.d/hadoop-yarn-proxyserver tmpsvc/hadoop-yarn-proxyserver.orig
-#  cp tmpsvc/hadoop-yarn-proxyserver.orig tmpsvc/savemeproxy
-#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' tmpsvc/savemeproxy                 
-#  sudo cp tmpsvc/savemeproxy /etc/init.d/hadoop-yarn-proxyserver
-
-#  cp /etc/init.d/hadoop-httpfs tmpsvc/hadoop-httpfs.orig
-#  cp tmpsvc/hadoop-httpfs.orig tmpsvc/savemehttpfs
-#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' tmpsvc/savemehttpfs                 
-#  sudo cp tmpsvc/savemehttpfs /etc/init.d/hadoop-httpfs
-
-#  cp /etc/init.d/hadoop-hdfs-zkfc tmpsvc/hadoop-hdfs-zkfc.orig
-#  cp tmpsvc/hadoop-hdfs-zkfc.orig tmpsvc/savemezk
-#  sed 's/WORKING_DIR\=\"\~\/\"/WORKING_DIR=\"$1\/lib\/hadoop-yarn\"/' tmpsvc/savemezk
-#  sudo cp tmpsvc/savemezk /etc/init.d/hadoop-hdfs-zkfc
+   cd ~/hadoop-benchmarks/tmpsvc
+   for modfile in $( ls ); do
+     echo $modfile
+     sed 's/^WORKING_DIR.*/WORKING_DIR=\"\/testhdfsvol\/lib\/hadoop-hdfs\"/' $modfile > $modfile.mod
+     #sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
+   done
 
 }
 
