@@ -532,7 +532,7 @@ function modsite {
   sudo chmod 0666 /etc/hadoop/conf/hdfs-site.xml
   cp /etc/hadoop/conf/hdfs-site.xml tmpsite/hdfs-site.xmlorig
   if [ -e tmpsite/hdfs-site.xmlorig ]; then
-    sed "s/var/$1/g" tmpsite/hdfs-site.xmlorig > tmpsite/hdfs-site.xml
+    sed "s/var/\/testhdfsvol/g" tmpsite/hdfs-site.xmlorig > tmpsite/hdfs-site.xml
   fi
   if [ -s tmpsite/hdfs-site.xml ] ;then
     sudo cp tmpsite/hdfs-site.xml /etc/hadoop/conf/
@@ -542,7 +542,7 @@ function modsite {
   sudo chmod 0666 /etc/hadoop/conf/mapred-site.xml
   cp /etc/hadoop/conf/mapred-site.xml tmpsite/mapred-site.xmlorig
   if [ -e tmpsite/mapred-site.xmlorig ];then 
-   sudo sed "s/var/$1/g" tmpsite/mapred-site.xmlorig > tmpsite/mapred-site.xml
+   sudo sed "s/var/\/testhdfsvol/g" tmpsite/mapred-site.xmlorig > tmpsite/mapred-site.xml
   fi
   if [ -s tmpsite/mapred-site.xml ] ;then
     sudo cp tmpsite/mapred-site.xml /etc/hadoop/conf/
@@ -552,7 +552,7 @@ function modsite {
   sudo chmod 0666 /etc/hadoop/conf/yarn-site.xml
   cp /etc/hadoop/conf/yarn-site.xml tmpsite/yarn-site.xmlorig
   if [ -e tmpsite/yarn-site.xmlorig ]; then 
-     sed "s/var/$1/g" tmpsite/yarn-site.xmlorig > tmpsite/yarn-site.xml
+     sed "s/var/\/testhdfsvol/g" tmpsite/yarn-site.xmlorig > tmpsite/yarn-site.xml
   fi
   if [ -s tmpsite/yarn-site.xml ]; then
     sudo cp tmpsite/tmpsite/yarn-site.xml /etc/hadoop/conf/
