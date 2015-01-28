@@ -507,6 +507,7 @@ function modhttpfs {
 
 }
 
+#there is nothing in the site files
 #modify hdfs-site.xml,yarn-site.xml, mapred-site.xml
 #$1 is /testhdfsvol for blockdev or /var or /var/perf for local
 #not true, only works first time changing var to /testhdfsvol; doesnt work converting /testhdfsvol back to original
