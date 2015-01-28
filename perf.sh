@@ -456,6 +456,7 @@ function modenv {
     rm -rf tmpenv
   fi
   mkdir tmpenv
+  chmod 755 tmpenv
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/hadoop-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/yarn-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/mapred-env.sh
