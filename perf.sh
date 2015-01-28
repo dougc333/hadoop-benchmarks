@@ -482,6 +482,12 @@ function modenv {
 #modify the yarn and hdfs daemons $HADOOP_LOG_DIR
 #insert at line 41, $1=/testhdfsvol/log/hadoop-hdfs or /var/perf/log/hadoop-hdfs
 function moddaemon {
+  cd
+  if [ -e tmpdaemon ]
+   rm -rf tmpdaemon
+  fi
+  mkdir tmpdaemon
+
   sudo cp /usr/lib/hadoop/sbin/hadoop-daemon.sh tmpdaemon/hadoop-daemon.shorig 
   awk -v n=41 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpdaemon/hadoop-daemon.shorig > tmpdaemon/hadoop-daemon.sh 
   sudo mv tmpdaemon/hadoop-daemon.sh /usr/lib/hadoop/sbin/hadoop-daemon.sh
