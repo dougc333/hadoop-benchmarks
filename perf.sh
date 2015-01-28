@@ -483,7 +483,7 @@ function modenv {
 #insert at line 41, $1=/testhdfsvol/log/hadoop-hdfs or /var/perf/log/hadoop-hdfs
 function moddaemon {
   cd
-  if [ -e tmpdaemon ]
+  if [ -e tmpdaemon ];then
    rm -rf tmpdaemon
   fi
   mkdir tmpdaemon
