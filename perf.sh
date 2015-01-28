@@ -473,8 +473,8 @@ function modenv {
   sudo cp tmpenv/yarn-env.sh /usr/lib/hadoop/etc/hadoop/yarn-env.sh
   
   sudo cp /usr/lib/hadoop/etc/hadoop/mapred-env.sh tmpenv/mapred-env.shorig
-  sudo awk -v n=21 -v s="export HADOOP_MAPRED_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/mapred-env.shorig > tmpenv/mapred-env.sh
-  sudo mv tmpenv/mapred-env.sh /usr/lib/hadoop/etc/hadoop/mapred-env.sh
+  sudo awk -v n=21 -v s="export HADOOP_MAPRED_LOG_DIR=$1/log/hadoop-mapred" 'NR == n {print s} {print}' tmpenv/mapred-env.shorig > tmpenv/mapred-env.sh
+  sudo cp tmpenv/mapred-env.sh /usr/lib/hadoop/etc/hadoop/mapred-env.sh
   
 }
 
