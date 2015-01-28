@@ -463,25 +463,18 @@ function modenv {
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/hadoop-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/yarn-env.sh
   sudo chmod 644 /usr/lib/hadoop/etc/hadoop/mapred-env.sh
-  sudo cp /usr/lib/hadoop/etc/hadoop/hadoop-env.sh tmpenv/hadoop-env.shorig
-  
-  awk -v n=20 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpenv/hadoop-env.shorig > tmpenv/hadoop-env.sh 
-#  sudo cp /usr/lib/hadoop/etc/hadoop/yarn-env.sh tmpenv/yarn-env.shorig
-#  cp tmpenv/yarn-env.shorig tmpenv/yarn-env.sh
-#  awk -v n=21 -v s="export YARN_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/yarn-env.sh
-  sudo cp tmpenv/hadoop-env.sh /usr/lib/hadoop/etc/hadoop/hadoop-env.sh 
-#  sudo cp /usr/lib/hadoop/etc/hadoop/mapred-env.sh tmpenv/mapred-env.shorig
-#  cp tmpenv/mapred-env.shorig tmpenv/mapred-env.sh
-#  sudo awk -v n=21 -v s="export HADOOP_MAPRED_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/mapred-env.sh
-  
-#  sudo chown root tmpenv/hadoop-env.sh
-#  sudo chgrp root tmpenv/hadoop-env.sh
-#  sudo chown root tmpenv/mapred-env.sh
-#  sudo chgrp root tmpenv/mapred-env.sh
-#  sudo chown root tmpenv/yarn-env.sh
-#  sudo chgrp root tmpenv/yarn-env.sh
 
-#  sudo mv tmpenv/mapred-env.sh /usr/lib/hadoop/etc/hadoop/mapred-env.sh
+  sudo cp /usr/lib/hadoop/etc/hadoop/hadoop-env.sh tmpenv/hadoop-env.shorig  
+  awk -v n=20 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpenv/hadoop-env.shorig > tmpenv/hadoop-env.sh 
+  sudo cp tmpenv/hadoop-env.sh /usr/lib/hadoop/etc/hadoop/hadoop-env.sh
+  
+  sudo cp /usr/lib/hadoop/etc/hadoop/yarn-env.sh tmpenv/yarn-env.shorig
+  awk -v n=21 -v s="export YARN_LOG_DIR=$1/log/hadoop-yarn" 'NR == n {print s} {print}' tmpenv/yarn-env.shorig > tmpenv/yarn-env.sh
+  sudo cp tmpenv/yarn-env.sh /usr/lib/hadoop/etc/hadoop/yarn-env.sh
+  
+  sudo cp /usr/lib/hadoop/etc/hadoop/mapred-env.sh tmpenv/mapred-env.shorig
+  sudo awk -v n=21 -v s="export HADOOP_MAPRED_LOG_DIR=$1" 'NR == n {print s} {print}' tmpenv/mapred-env.shorig > tmpenv/mapred-env.sh
+  sudo mv tmpenv/mapred-env.sh /usr/lib/hadoop/etc/hadoop/mapred-env.sh
   
 }
 
