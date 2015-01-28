@@ -436,7 +436,8 @@ function modworkingdir {
    for cpfile in $( ls *.mod ); do
      echo "copying to /etc/init.d" >> $LOGFILE
      y=${cpfile%%.*}
-     echo "new file name $y"
+     echo "copying $cpfile to /etc/init.d/$y"
+     sudo cp $cpfile /etc/init.d/$y
    done
 
 }
