@@ -423,6 +423,8 @@ function createhadoopdirs {
 #for /etc/init.d/hadoop-hdfs-namenode,datanode modifies WORKING_DIR from /var/lib/hadoop-hdfs to /testhdfsvol/lib/hadoop-hdfs
 #for /etc/init.d/hadoop-hdfs-nodemanager,resourcemanager modifies WORKING_DIR from /var/lib/hadoop-yarn to /testhdfsvol/lib/hadoop-yarn
 #for hadoop-hdfs-zkfc modifles WORKING_DIR from /var/lib/hadoop-hdfs to /testhdfsvol/lib/hadoop-hdfs 
+#assumes the /etc/init.d/hadoop-yarn-resourcemanager.orig, /etc/init.d/hadoop-yarn-nodemanager
+#/etc/init.d/hadoop-hdfs-namenode, /etc/init.d/hadoop-hdfs-datanode are scp copied to /tmpsvc
 function modworkingdir {
 #  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
    [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
@@ -476,14 +478,6 @@ function modenv {
 #  sudo chgrp root tmpenv/yarn-env.sh
 
 #  sudo mv tmpenv/mapred-env.sh /usr/lib/hadoop/etc/hadoop/mapred-env.sh
-  
-}
-
-#we cant move this into the hadoop-env.sh, yarn-env.sh, mapred-env.sh file instead?
-#is the same amount of work; more clear 
-function moddaemon {
-  modhadoopdaemon
-  modyarndaemon
   
 }
 
