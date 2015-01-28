@@ -481,22 +481,14 @@ function modenv {
 #we need to modify daemon files if hadoop-env, yarn-env and mapred-env is changed?????
 #modify the yarn and hdfs daemons $HADOOP_LOG_DIR
 #insert at line 41, $1=/testhdfsvol/log/hadoop-hdfs or /var/perf/log/hadoop-hdfs
-function modhadopdaemon {
+function moddaemon {
   sudo cp /usr/lib/hadoop/sbin/hadoop-daemon.sh tmpdaemon/hadoop-daemon.shorig 
-  awk -v n=41 -v s="export HADOOP_LOG_DIR=$1" 'NR == n {print s} {print}' tmpdaemon/hadoop-daemon.shorig > tmpdaemon/hadoop-daemon.sh 
+  awk -v n=41 -v s="export HADOOP_LOG_DIR=$1/log/hadoop-hdfs" 'NR == n {print s} {print}' tmpdaemon/hadoop-daemon.shorig > tmpdaemon/hadoop-daemon.sh 
   sudo mv tmpdaemon/hadoop-daemon.sh /usr/lib/hadoop/sbin/hadoop-daemon.sh
-}
 
-#$1 is either /testhdfsvol/log/hadoop-yarn or /var/perf/log/hadoop-yarn
-# test if line exists before insert
-function modyarndaemon {
   sudo cp /usr/lib/hadoop-yarn/sbin/yarn-daemon tmpdaemon/yarn-daemon.shorig
-  awk -v n=41 -v s="YARN_LOG_DIR=$1" 'NR == n {print s} {print}' /usr/lib/hadoop-yarn/sbin/yarn-daemon.shorig > tmpdaemon/yarn-daemon.sh
+  awk -v n=41 -v s="YARN_LOG_DIR=$1/log/hadoop-yarn" 'NR == n {print s} {print}' /usr/lib/hadoop-yarn/sbin/yarn-daemon.shorig > tmpdaemon/yarn-daemon.sh
   sudo mv tmpdaemon/yarn-daemon.sh /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
-}
-#add mrjobshistorydaemon
-function modjobhistdaemon {
-  sudo cp /usr/lib/hadoop-yarn/sbin/yarn-daemon tmpdaemon/yarn-daemon.shorig
 
 }
 
