@@ -552,7 +552,7 @@ function modsite {
   sudo chmod 0666 /etc/hadoop/conf/yarn-site.xml
   cp /etc/hadoop/conf/yarn-site.xml tmpsite/yarn-site.xmlorig
   if [ -e tmpsite/yarn-site.xmlorig ]; then 
-     sed 's/var/$1/g' yarn-site.xmlorig > tmpsite/yarn-site.xml
+     sed 's/var/$1/g' tmpsite/yarn-site.xmlorig > tmpsite/yarn-site.xml
   fi
   if [ -s tmpsite/yarn-site.xml ]; then
     sudo cp tmpsite/tmpsite/yarn-site.xml /etc/hadoop/conf/
