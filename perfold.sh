@@ -477,9 +477,11 @@ function modyarndaemon {
 #add mrjobshistorydaemon
 
 
-#modify hdfs-site.xml,yarn-site.xml, mapred-site.xml
+#modify hdfs-site.xml,yarn-site.xml, mapred-site.xml in location
+#/usr/lig/hadoop/etc/hadoop or /etc/hadoop/conf. Symlinked together
+#the defaults are here
 #$1 is /testhdfsvol for blockdev or /var/perf for local
-function modsitefiles {
+function modsite {
   mkdir tmpsite
   sudo cp /etc/hadoop/conf/hdfs-site.xml tmpsite/hdfs-site.xmlorig
   sed 's/var/$1/g' hdfs-site.xmlorig > /etc/hadoop/conf/hdfs-site.xml

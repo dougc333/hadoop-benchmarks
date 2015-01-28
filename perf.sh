@@ -519,4 +519,28 @@ function modhttpfs {
 
 }
  
+
+
+#modify hdfs-site.xml,yarn-site.xml, mapred-site.xml under /usr/lib/hadoop/etc/hadoop
+#$1 is /testhdfsvol for blockdev or /var/perf for local
+function modsite {
+  cd
+  if [ -d tmpsite ]; then 
+    rm -rf tmpsite
+  fi
+  mkdir tmpsite
+  sudo cp /etc/hadoop/conf/hdfs-site.xml tmpsite/hdfs-site.xmlorig
+  sed 's/var/$1/g' hdfs-site.xmlorig > tmpsite/hdfs-site.xml
+  sudo cp tmpsite/hdfs-site.xml /etc/hadoop/conf/
+
+  sudo cp /etc/hadoop/conf/mapred-site.xml tmpsite/mapred-site.xmlorig
+  sudo sed 's/var/$1/g' mapred-site.xmlorig > tmpsite/mapred-site.xml
+  sudo cp tmpsite/mapred-site.xml /etc/hadoop/conf/
+
+  sudo cp /etc/hadoop/conf/yarn-site.xml tmpsite/yarn-site.xmlorig
+  sed 's/var/$1/g' yarn-site.xmlorig > tmpsite/yarn-site.xml
+  sudo cp tmpsite/yarn-site.xml /etc/hadoop/conf/
+}
+
+
 $@
