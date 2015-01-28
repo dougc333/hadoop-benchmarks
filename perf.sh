@@ -311,13 +311,13 @@ function restore {
     fi 
   fi
 
-  sudo mv tmpsite/hdfs-site.xmlorig /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
-  sudo mv tmpsite/yarn-site.xmlorig /usr/lib/hadoop/etc/hadoop/yarn-site.xml
-  sudo mv tmpsite/mapred-site.xmlorig /usr/lib/hadoop/etc/hadoop/mapred-site.xml
-  #sudo rmdir tmpsite
+  #sudo mv tmpsite/hdfs-site.xmlorig /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
+  #sudo mv tmpsite/yarn-site.xmlorig /usr/lib/hadoop/etc/hadoop/yarn-site.xml
+  #sudo mv tmpsite/mapred-site.xmlorig /usr/lib/hadoop/etc/hadoop/mapred-site.xml
+  
   sudo mv tmpdaemon/hadoop-daemon.shorig /usr/lib/hadoop/sbin/hadoop-daemon.sh
   sudo mv tmpdaemon/yarn-daemon.shorig /usr/lib/hadoop-yarn/sbin/yarn-daemon.sh
-  #tbd add the mr-jobhistory-server
+  
 }
 
 
