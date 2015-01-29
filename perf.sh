@@ -533,7 +533,7 @@ function modsite {
   sudo chmod 0666 /etc/hadoop/conf/hdfs-site.xml
   cp /etc/hadoop/conf/hdfs-site.xml tmpsite/hdfs-site.xmlorig
   if [ -e tmpsite/hdfs-site.xmlorig ]; then
-    sed "s/var/\/testhdfsvol/g" tmpsite/hdfs-site.xmlorig > tmpsite/hdfs-site.xml
+    sed "s/var/testhdfsvol/g" tmpsite/hdfs-site.xmlorig > tmpsite/hdfs-site.xml
   fi
   if [ -s tmpsite/hdfs-site.xml ] ;then
     sudo cp tmpsite/hdfs-site.xml /etc/hadoop/conf/
