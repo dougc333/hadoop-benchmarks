@@ -450,7 +450,7 @@ function modworkingdir {
      #sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
    done
 
-   for cpfile in $( ls *.mod ); do
+   for cpfile in $( ls tmpsvc/*.mod ); do
      echo "copying to /etc/init.d" >> $LOGFILE
      y=${cpfile%%.*}
      echo "copying $cpfile to /etc/init.d/$y"
