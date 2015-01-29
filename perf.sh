@@ -443,14 +443,15 @@ function modworkingdir {
    sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
    sudo cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
    
-   
-   for modfile in $( ls tmpsvc/*.orig ); do
+   cd tmpsvc
+   for modfile in $( ls *.orig ); do
      echo "modifying WORKING_DIR for $modfile" >> $LOGFILE
      sed 's/^WORKING_DIR.*/WORKING_DIR=\"\/testhdfsvol\/lib\/hadoop-hdfs\"/' $modfile > $modfile.mod
      #sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
    done
-
-   for cpfile in $( ls tmpsvc/*.mod ); do
+    
+  cd tmpsvc
+   for cpfile in $( ls *.mod ); do
      echo "copying to /etc/init.d" >> $LOGFILE
      y=${cpfile%%.*}
      echo "copying $cpfile to /etc/init.d/$y"
