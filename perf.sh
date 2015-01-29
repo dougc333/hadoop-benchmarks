@@ -433,7 +433,7 @@ function modworkingdir {
       rm -rf tmpsvc
    fi
    mkdir tmpsvc
-   chmod 0666 tmpsvc
+   chmod 0777 tmpsvc
    sudo chmod 0666 /etc/init.d/hadoop-hdfs-namenode
    sudo chmod 0666 /etc/init.d/hadoop-hdfs-datanode
    sudo chmod 0666 /etc/init.d/hadoop-yarn-nodemanager
@@ -442,10 +442,9 @@ function modworkingdir {
    sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
    sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
    sudo cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
-   exit 0
-   echo "you should not see me!!!!"
-   cd ~/hadoop-benchmarks/tmpsvc
-   for modfile in $( ls *.orig ); do
+   
+   
+   for modfile in $( ls tmpsvc/*.orig ); do
      echo "modifying WORKING_DIR for $modfile" >> $LOGFILE
      sed 's/^WORKING_DIR.*/WORKING_DIR=\"\/testhdfsvol\/lib\/hadoop-hdfs\"/' $modfile > $modfile.mod
      #sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
