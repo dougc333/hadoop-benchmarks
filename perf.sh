@@ -540,6 +540,15 @@ function modsite {
   fi
   sudo chmod 0755 /etc/hadoop/conf/hdfs-site.xml
   
+  sudo chmod 0666 /etc/hadoop/conf/mapred-site.xml
+  cp /etc/hadoop/conf/mapred-site.xml tmpsite/mapred-site.xmlorig
+  if [ -e tmpsite/mapred-site.xmlorig ];then 
+   sudo sed 's/var/'"$1"'/g' tmpsite/mapred-site.xmlorig > tmpsite/mapred-site.xml
+  fi
+  if [ -s tmpsite/mapred-site.xml ] ;then
+    sudo cp tmpsite/mapred-site.xml /etc/hadoop/conf/
+  fi
+  sudo chmod 0755 /etc/hadoop/conf/mapred-site.xml 
 }
 
 function foo {
