@@ -438,11 +438,12 @@ function modworkingdir {
    sudo chmod 0666 /etc/init.d/hadoop-hdfs-datanode
    sudo chmod 0666 /etc/init.d/hadoop-yarn-nodemanager
    sudo chmod 0666 /etc/init.d/hadoop-yarn-resourcemanager
-   [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
-   [ ! -f tmpsvc/hadoop-hdfs-datanode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
-   [ ! -f tmpsvc/hadoop-yarn-nodemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
-   [ ! -f tmpsvc/hadoop-yarn-resourcemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
-  exit 0
+   sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
+   sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
+   sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
+   sudo cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
+   exit 0
+   echo "you should not see me!!!!"
    cd ~/hadoop-benchmarks/tmpsvc
    for modfile in $( ls *.orig ); do
      echo "modifying WORKING_DIR for $modfile" >> $LOGFILE
