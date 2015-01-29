@@ -428,11 +428,17 @@ function createhadoopdirs {
 function modworkingdir {
 # don't automate the copy. Too confusing to user to have multiple versions of files
 #  cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
+   cd 
+   if [ -d tmpsvc ];then
+      rm -rf tmpsvc
+   fi
+   mkdir tmpsvc
+
    [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
    [ ! -f tmpsvc/hadoop-hdfs-datanode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
    [ ! -f tmpsvc/hadoop-yarn-nodemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
    [ ! -f tmpsvc/hadoop-yarn-resourcemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-resourcemanager tmpsvc/hadoop-yarn-resourcemanager.orig
-
+  exit 0
    cd ~/hadoop-benchmarks/tmpsvc
    for modfile in $( ls *.orig ); do
      echo "modifying WORKING_DIR for $modfile" >> $LOGFILE
