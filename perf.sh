@@ -433,7 +433,7 @@ function modworkingdir {
       rm -rf tmpsvc
    fi
    mkdir tmpsvc
-   chmod 777 tmpsvc
+   chmod 0666 tmpsvc
    sudo chmod 0666 /etc/init.d/hadoop-hdfs-namenode
    sudo chmod 0666 /etc/init.d/hadoop-hdfs-datanode
    sudo chmod 0666 /etc/init.d/hadoop-yarn-nodemanager
