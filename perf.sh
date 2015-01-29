@@ -433,7 +433,10 @@ function modworkingdir {
       rm -rf tmpsvc
    fi
    mkdir tmpsvc
-
+   sudo chmod 0666 /etc/init.d/hadoop-hdfs-namenode
+   sudo chmod 0666 /etc/init.d/hadoop-hdfs-datanode
+   sudo chmod 0666 /etc/init.d/hadoop-yarn-nodemanager
+   sudo chmod 0666 /etc/init.d/hadoop-yarn-resourcemanager
    [ ! -f tmpsvc/hadoop-hdfs-namenode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-namenode tmpsvc/hadoop-hdfs-namenode.orig
    [ ! -f tmpsvc/hadoop-hdfs-datanode.orig ] && sudo cp /etc/init.d/hadoop-hdfs-datanode tmpsvc/hadoop-hdfs-datanode.orig
    [ ! -f tmpsvc/hadoop-yarn-nodemanager.orig ] && sudo cp /etc/init.d/hadoop-yarn-nodemanager tmpsvc/hadoop-yarn-nodemanager.orig
@@ -451,6 +454,7 @@ function modworkingdir {
      y=${cpfile%%.*}
      echo "copying $cpfile to /etc/init.d/$y"
      sudo cp $cpfile /etc/init.d/$y
+     sudo chmod 755 /etc/init.d/$y
    done
 
 }
