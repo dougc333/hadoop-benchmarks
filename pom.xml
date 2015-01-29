@@ -46,7 +46,7 @@
 			bash /home/doug/hadoop-benchmarks/perf.sh modworkingdir
 			bash /home/doug/hadoop-benchmarks/perf.sh modenv /testhdfsvol
 			bash /home/doug/hadoop-benchmarks/perf.sh moddaemon /testhdfsvol
-			bash /home/doug/hadoop-benchmarks/perf.sh modsite /testhdfsvol
+			bash /home/doug/hadoop-benchmarks/perf.sh modsite testhdfsvol
 			bash /home/doug/hadoop-benchmarks/perf.sh initnamenode
 			bash /home/doug/hadoop-benchmarks/perf.sh starthadoop
 			bash /home/doug/hadoop-benchmarks/perf.sh runtests
