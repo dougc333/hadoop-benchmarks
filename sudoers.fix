@@ -7,7 +7,6 @@
 ## 
 ## This file must be edited with the 'visudo' command.
 
-#asdf
 
 ## Host Aliases
 ## Groups of machines. You may prefer to use hostnames (perhaps using 

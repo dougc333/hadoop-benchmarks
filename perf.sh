@@ -93,12 +93,10 @@ function testsudo {
 #
 #addus $USER to sudoers file; 
 function addsudo {
-  #modify to scp command? modify to where this is run outside of maven
-  cd #assume in hadoop-benchmarks
-  sudo scp root@/$1:/etc/sudoers sudoers.orig
-  cp sudoers.orig sudoers.fixtest
+  #scp root@/$1:/etc/sudoers sudoers.orig
   #sudo sed '/root[[:space:]]*ALL/a  $USER\tALL=(ALL)\tALL' sudoers.fixtest
-  #verify this works. Right now we have put sudoers.fix w/hardcoded user in hadoop-benchmarks
+  cd ~/hadoop-benchmarks
+  scp sudoers.fix root@$1:/etc/sudoers
 }
 
 function checkcm {  
@@ -368,8 +366,8 @@ function runtests {
   #
   time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOwrite64_1G.txt
   time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 64 -fileSize 1GB -resFile /tmp/TestDFSIOread64_1G.txt
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 4 -fileSize 16GB -resFile /tmp/TestDFSIOwrite4_16G.txt
-  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 4 -fileSize 16GB -resFile /tmp/TestDFSIOread4_16G.txt
+  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -write -nrFiles 32 -fileSize 2GB -resFile /tmp/TestDFSIOwrite4_16G.txt
+  time sudo hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-2.4.1.jar TestDFSIO -read -nrFiles 32 -fileSize 2GB -resFile /tmp/TestDFSIOread4_16G.txt
   # add all the hadoop tests here....
   
 }
@@ -449,8 +447,7 @@ function modworkingdir {
      sed 's/^WORKING_DIR.*/WORKING_DIR=\"\/testhdfsvol\/lib\/hadoop-hdfs\"/' $modfile > $modfile.mod
      #sudo cp tmpsvc/savemenn /etc/init.d/hadoop-hdfs-namenode
    done
-    
-  cd tmpsvc
+    v
    for cpfile in $( ls *.mod ); do
      echo "copying to /etc/init.d" >> $LOGFILE
      y=${cpfile%%.*}
