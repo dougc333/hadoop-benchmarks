@@ -1,0 +1,162 @@
+111101101101100010000011101100
+1111111111111111111111111111111111111111010111101000101000110100
+
+http://www.cloudera.com/content/cloudera/en/documentation/core/latest/topics/cm_qs_quick_start.html
+
+
+Support
+ admin 
+Error
+A server error has occurred. Send the following information to Cloudera.
+
+Path: http://r2462-d5-us01:7180/cmf/clusters/1/express-add-services/reviewConfig
+
+Version: Cloudera Enterprise Data Hub Edition Trial 5.3.1 (#191 built by jenkins on 20150123-2020 git: b0377087cf605a686591e659eb14078923bc3c83)
+
+org.springframework.web.bind.MissingServletRequestParameterException:Required List parameter 'serviceId' is not present
+at AnnotationMethodHandlerAdapter.java line 738
+in org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker raiseMissingParameterException()
+ Stack Trace:
+
+AnnotationMethodHandlerAdapter.java line 738
+in org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker raiseMissingParameterException()
+HandlerMethodInvoker.java line 501
+in org.springframework.web.bind.annotation.support.HandlerMethodInvoker resolveRequestParam()
+HandlerMethodInvoker.java line 340
+in org.springframework.web.bind.annotation.support.HandlerMethodInvoker resolveHandlerArguments()
+HandlerMethodInvoker.java line 171
+in org.springframework.web.bind.annotation.support.HandlerMethodInvoker invokeHandlerMethod()
+AnnotationMethodHandlerAdapter.java line 436
+in org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter invokeHandlerMethod()
+AnnotationMethodHandlerAdapter.java line 424
+in org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter handle()
+DispatcherServlet.java line 790
+in org.springframework.web.servlet.DispatcherServlet doDispatch()
+DispatcherServlet.java line 719
+in org.springframework.web.servlet.DispatcherServlet doService()
+FrameworkServlet.java line 669
+in org.springframework.web.servlet.FrameworkServlet processRequest()
+FrameworkServlet.java line 574
+in org.springframework.web.servlet.FrameworkServlet doGet()
+HttpServlet.java line 707
+in javax.servlet.http.HttpServlet service()
+HttpServlet.java line 820
+in javax.servlet.http.HttpServlet service()
+ServletHolder.java line 511
+in org.mortbay.jetty.servlet.ServletHolder handle()
+ServletHandler.java line 1221
+in org.mortbay.jetty.servlet.ServletHandler$CachedChain doFilter()
+UserAgentFilter.java line 78
+in org.mortbay.servlet.UserAgentFilter doFilter()
+GzipFilter.java line 131
+in org.mortbay.servlet.GzipFilter doFilter()
+ServletHandler.java line 1212
+in org.mortbay.jetty.servlet.ServletHandler$CachedChain doFilter()
+JAMonServletFilter.java line 48
+in com.jamonapi.http.JAMonServletFilter doFilter()
+ServletHandler.java line 1212
+in org.mortbay.jetty.servlet.ServletHandler$CachedChain doFilter()
+JavaMelodyFacade.java line 109
+in com.cloudera.enterprise.JavaMelodyFacade$MonitoringFilter doFilter()
+ServletHandler.java line 1212
+in org.mortbay.jetty.servlet.ServletHandler$CachedChain doFilter()
+FilterChainProxy.java line 311
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+FilterSecurityInterceptor.java line 116
+in org.springframework.security.web.access.intercept.FilterSecurityInterceptor invoke()
+FilterSecurityInterceptor.java line 83
+in org.springframework.security.web.access.intercept.FilterSecurityInterceptor doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+ExceptionTranslationFilter.java line 113
+in org.springframework.security.web.access.ExceptionTranslationFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+SessionManagementFilter.java line 101
+in org.springframework.security.web.session.SessionManagementFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+AnonymousAuthenticationFilter.java line 113
+in org.springframework.security.web.authentication.AnonymousAuthenticationFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+RememberMeAuthenticationFilter.java line 146
+in org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+SecurityContextHolderAwareRequestFilter.java line 54
+in org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+RequestCacheAwareFilter.java line 45
+in org.springframework.security.web.savedrequest.RequestCacheAwareFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+AbstractAuthenticationProcessingFilter.java line 182
+in org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+LogoutFilter.java line 105
+in org.springframework.security.web.authentication.logout.LogoutFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+SecurityContextPersistenceFilter.java line 87
+in org.springframework.security.web.context.SecurityContextPersistenceFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+ConcurrentSessionFilter.java line 125
+in org.springframework.security.web.session.ConcurrentSessionFilter doFilter()
+FilterChainProxy.java line 323
+in org.springframework.security.web.FilterChainProxy$VirtualFilterChain doFilter()
+FilterChainProxy.java line 173
+in org.springframework.security.web.FilterChainProxy doFilter()
+DelegatingFilterProxy.java line 237
+in org.springframework.web.filter.DelegatingFilterProxy invokeDelegate()
+DelegatingFilterProxy.java line 167
+in org.springframework.web.filter.DelegatingFilterProxy doFilter()
+ServletHandler.java line 1212
+in org.mortbay.jetty.servlet.ServletHandler$CachedChain doFilter()
+CharacterEncodingFilter.java line 88
+in org.springframework.web.filter.CharacterEncodingFilter doFilterInternal()
+OncePerRequestFilter.java line 76
+in org.springframework.web.filter.OncePerRequestFilter doFilter()
+ServletHandler.java line 1212
+in org.mortbay.jetty.servlet.ServletHandler$CachedChain doFilter()
+ServletHandler.java line 399
+in org.mortbay.jetty.servlet.ServletHandler handle()
+SecurityHandler.java line 216
+in org.mortbay.jetty.security.SecurityHandler handle()
+SessionHandler.java line 182
+in org.mortbay.jetty.servlet.SessionHandler handle()
+SecurityHandler.java line 216
+in org.mortbay.jetty.security.SecurityHandler handle()
+ContextHandler.java line 767
+in org.mortbay.jetty.handler.ContextHandler handle()
+WebAppContext.java line 450
+in org.mortbay.jetty.webapp.WebAppContext handle()
+HandlerWrapper.java line 152
+in org.mortbay.jetty.handler.HandlerWrapper handle()
+StatisticsHandler.java line 53
+in org.mortbay.jetty.handler.StatisticsHandler handle()
+HandlerWrapper.java line 152
+in org.mortbay.jetty.handler.HandlerWrapper handle()
+Server.java line 326
+in org.mortbay.jetty.Server handle()
+HttpConnection.java line 542
+in org.mortbay.jetty.HttpConnection handleRequest()
+HttpConnection.java line 928
+in org.mortbay.jetty.HttpConnection$RequestHandler headerComplete()
+HttpParser.java line 549
+in org.mortbay.jetty.HttpParser parseNext()
+HttpParser.java line 212
+in org.mortbay.jetty.HttpParser parseAvailable()
+HttpConnection.java line 404
+in org.mortbay.jetty.HttpConnection handle()
+SelectChannelEndPoint.java line 410
+in org.mortbay.io.nio.SelectChannelEndPoint run()
+QueuedThreadPool.java line 582
+in org.mortbay.thread.QueuedThreadPool$PoolThread run()
+Close
+Cluster Setup
+Review Changes 
+ Back 1 2 3 4 5 6  Continue
