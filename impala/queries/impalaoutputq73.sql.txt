@@ -1,0 +1,32 @@
++-------------+--------------+--------------+-----------------------+------------------+-----+
+| c_last_name | c_first_name | c_salutation | c_preferred_cust_flag | ss_ticket_number | cnt |
++-------------+--------------+--------------+-----------------------+------------------+-----+
+| Allen       | Lia          | Ms.          | Y                     | 43785587         | 5   |
+| Phelps      | Hannah       | Mrs.         | N                     | 49308325         | 5   |
+| Harper      | Susie        | Mrs.         | N                     | 37820128         | 5   |
+| Day         | Darcy        | Dr.          | Y                     | 38471096         | 5   |
+| Austin      | Ayesha       | Mrs.         | Y                     | 55162712         | 5   |
+| Coleman     | Donald       | Mr.          | Y                     | 69814838         | 5   |
+| Lafleur     | Latoya       | Ms.          | Y                     | 54913946         | 5   |
+| Owens       | Darrell      | Dr.          | N                     | 49017209         | 5   |
+| Spencer     | Donna        | Ms.          | N                     | 68008870         | 5   |
+| Williams    | George       | Sir          | N                     | 58384538         | 5   |
+| NULL        | Herta        | Mrs.         | N                     | 62035832         | 5   |
+| Johnson     | Arron        | Sir          | N                     | 55825998         | 5   |
+| Smith       | Brian        | Mr.          | N                     | 66899631         | 5   |
+| Duran       | Brian        | Sir          | N                     | 40125483         | 5   |
+| Jaramillo   | Alan         | Dr.          | N                     | 64658533         | 5   |
+| Bolton      | Anita        | Mrs.         | N                     | 59705079         | 5   |
+| Moss        | Norman       | Dr.          | N                     | 50550548         | 5   |
+| Simmons     | Kathleen     | Dr.          | N                     | 51137974         | 5   |
+| Stewart     | Laurie       | Miss         | Y                     | 38996573         | 5   |
+| Harkins     | Charles      | Mr.          | N                     | 66544630         | 5   |
+| Wise        | Frieda       | Ms.          | N                     | 41415098         | 5   |
+| Gunn        | Brandi       | Dr.          | Y                     | 41540506         | 5   |
+| Thompson    | Roy          | Sir          | N                     | 58230619         | 5   |
+| Bailey      | Justin       | Dr.          | N                     | 58314446         | 4   |
+| Smith       | Corinne      | Miss         | Y                     | 49447093         | 4   |
+| Dickerson   | Paul         | Sir          | N                     | 64269647         | 4   |
+| Moore       | Tammy        | Ms.          | Y                     | 48620560         | 4   |
+| Miller      | Rafael       | Dr.          | N                     | 48941245         | 4   |
++-------------+--------------+--------------+-----------------------+------------------+-----+

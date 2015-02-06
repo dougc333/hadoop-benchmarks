@@ -1,0 +1,104 @@
++-------------+-----------+--------------------+--------------+----------------+-------+--------------------+
+| i_category  | i_class   | i_brand            | s_store_name | s_company_name | d_moy | sum_sales          |
++-------------+-----------+--------------------+--------------+----------------+-------+--------------------+
+| Electronics | musical   | corpunivamalg #15  | able         | NULL           | 1     | 0                  |
+| Shoes       | womens    | NULL               | n st         | Unknown        | 5     | 0                  |
+| Electronics | musical   | NULL               | able         | NULL           | 9     | 0.03               |
+| Shoes       | womens    | NULL               | NULL         | Unknown        | 9     | 0.16               |
+| Men         | pants     | NULL               | pri          | Unknown        | 5     | 0.38               |
+| Home        | wallpaper | NULL               | NULL         | Unknown        | 11    | 0.45               |
+| Books       | parenting | NULL               | pri          | Unknown        | 6     | 0.55               |
+| Books       | parenting | corpmaxi #11       | ese          | NULL           | 1     | 0.82               |
+| Jewelry     | birdal    | NULL               | pri          | Unknown        | 6     | 0.9299999999999999 |
+| Shoes       | womens    | NULL               | NULL         | Unknown        | 3     | 1.01               |
+| Jewelry     | birdal    | amalgcorp #1       | able         | NULL           | 4     | 1.32               |
+| Men         | pants     | NULL               | ese          | Unknown        | 3     | 1.32               |
+| Jewelry     | birdal    | NULL               | ought        | Unknown        | 1     | 1.32               |
+| Electronics | musical   | corpunivamalg #12  | ese          | NULL           | 5     | 1.39               |
+| Home        | wallpaper | NULL               | ought        | Unknown        | 7     | 1.42               |
+| Electronics | musical   | corpunivamalg #15  | able         | NULL           | 5     | 1.81               |
+| Electronics | musical   | corpunivamalg #7   | ese          | NULL           | 5     | 2.14               |
+| Home        | wallpaper | exportinameless #6 | ese          | NULL           | 3     | 2.53               |
+| Men         | pants     | NULL               | n st         | Unknown        | 4     | 2.66               |
+| Men         | pants     | NULL               | n st         | Unknown        | 6     | 2.76               |
+| Electronics | musical   | corpunivamalg #14  | able         | NULL           | 2     | 2.89               |
+| Jewelry     | birdal    | amalgcorp #3       | able         | NULL           | 6     | 2.95               |
+| Books       | parenting | NULL               | ese          | Unknown        | 4     | 2.97               |
+| Home        | wallpaper | exportinameless #1 | able         | NULL           | 4     | 3.2                |
+| Electronics | musical   | corpunivamalg #1   | able         | NULL           | 7     | 3.41               |
+| Electronics | musical   | corpunivamalg #10  | ese          | NULL           | 4     | 4.05               |
+| Men         | pants     | NULL               | able         | Unknown        | 4     | 4.19               |
+| Books       | parenting | NULL               | anti         | Unknown        | 6     | 4.23               |
+| Electronics | musical   | corpunivamalg #1   | able         | NULL           | 9     | 4.51               |
+| Electronics | musical   | corpunivamalg #9   | able         | NULL           | 1     | 4.68               |
+| Electronics | musical   | NULL               | able         | NULL           | 11    | 4.7                |
+| Electronics | musical   | NULL               | NULL         | NULL           | 10    | 4.76               |
+| Men         | pants     | NULL               | bar          | Unknown        | 5     | 4.82               |
+| Electronics | musical   | corpunivamalg #1   | able         | NULL           | 12    | 4.98               |
+| Electronics | musical   | corpunivamalg #9   | ese          | NULL           | 2     | 5.04               |
+| Electronics | musical   | corpunivamalg #5   | ese          | NULL           | 5     | 5.1                |
+| Electronics | musical   | corpunivamalg #2   | able         | NULL           | 3     | 5.3                |
+| Home        | wallpaper | exportinameless #3 | able         | NULL           | 4     | 5.42               |
+| Jewelry     | birdal    | NULL               | eing         | Unknown        | 6     | 5.44               |
+| Jewelry     | birdal    | NULL               | NULL         | Unknown        | 11    | 5.45               |
+| Jewelry     | birdal    | NULL               | NULL         | NULL           | 12    | 5.72               |
+| Electronics | musical   | corpunivamalg #16  | ese          | NULL           | 4     | 5.75               |
+| Jewelry     | birdal    | NULL               | ation        | Unknown        | 4     | 6.05               |
+| Shoes       | womens    | NULL               | able         | NULL           | 9     | 6.21               |
+| Jewelry     | birdal    | amalgcorp #5       | ese          | NULL           | 1     | 6.44               |
+| Electronics | musical   | corpunivamalg #6   | able         | NULL           | 7     | 6.94               |
+| Books       | parenting | NULL               | ought        | Unknown        | 1     | 7.77               |
+| Books       | parenting | NULL               | anti         | Unknown        | 3     | 7.98               |
+| Electronics | musical   | corpunivamalg #11  | able         | NULL           | 4     | 7.99               |
+| Home        | wallpaper | exportinameless #1 | ese          | NULL           | 3     | 8.16               |
+| Books       | parenting | NULL               | ese          | Unknown        | 6     | 8.24               |
+| Electronics | musical   | corpunivamalg #15  | ese          | NULL           | 1     | 8.33               |
+| Electronics | musical   | corpunivamalg #10  | ese          | NULL           | 3     | 8.77               |
+| Electronics | musical   | NULL               | n st         | Unknown        | 3     | 9.25               |
+| Jewelry     | birdal    | amalgcorp #7       | able         | NULL           | 1     | 9.4                |
+| Electronics | musical   | corpunivamalg #14  | ese          | NULL           | 5     | 9.56               |
+| Home        | wallpaper | exportinameless #5 | able         | NULL           | 7     | 9.59               |
+| Electronics | musical   | corpunivamalg #3   | ese          | NULL           | 3     | 9.630000000000001  |
+| Jewelry     | birdal    | NULL               | anti         | Unknown        | 8     | 9.779999999999999  |
+| Electronics | musical   | corpunivamalg #7   | able         | NULL           | 4     | 10.12              |
+| Home        | wallpaper | exportinameless #7 | able         | NULL           | 2     | 10.23              |
+| Jewelry     | birdal    | NULL               | cally        | Unknown        | 1     | 10.69              |
+| Home        | wallpaper | exportinameless #3 | ese          | NULL           | 1     | 10.74              |
+| Books       | parenting | NULL               | cally        | Unknown        | 2     | 11.05              |
+| Electronics | musical   | corpunivamalg #8   | ese          | NULL           | 4     | 11.07              |
+| Men         | pants     | NULL               | anti         | Unknown        | 8     | 11.16              |
+| Books       | parenting | NULL               | ation        | Unknown        | 1     | 11.39              |
+| Home        | wallpaper | NULL               | NULL         | NULL           | 11    | 11.53              |
+| Home        | wallpaper | NULL               | NULL         | NULL           | 10    | 11.55              |
+| Home        | wallpaper | exportinameless #8 | ese          | NULL           | 6     | 11.74              |
+| Home        | wallpaper | exportinameless #1 | able         | NULL           | 5     | 11.85              |
+| Jewelry     | birdal    | amalgcorp #3       | ese          | NULL           | 5     | 12.12              |
+| Electronics | musical   | corpunivamalg #17  | able         | NULL           | 4     | 12.28              |
+| Home        | wallpaper | exportinameless #3 | ese          | NULL           | 2     | 12.55              |
+| Home        | wallpaper | NULL               | able         | NULL           | 3     | 12.61              |
+| Electronics | musical   | corpunivamalg #13  | able         | NULL           | 9     | 12.62              |
+| Electronics | musical   | NULL               | ese          | NULL           | 12    | 12.71              |
+| Jewelry     | birdal    | NULL               | ation        | Unknown        | 3     | 12.95              |
+| Shoes       | womens    | NULL               | anti         | Unknown        | 4     | 13.19              |
+| Electronics | musical   | corpunivamalg #9   | able         | NULL           | 4     | 13.4               |
+| Electronics | musical   | corpunivamalg #2   | ese          | NULL           | 7     | 13.8               |
+| Home        | wallpaper | NULL               | pri          | Unknown        | 6     | 14.07              |
+| Shoes       | womens    | NULL               | ese          | NULL           | 4     | 14.16              |
+| Electronics | musical   | corpunivamalg #2   | able         | NULL           | 9     | 14.28              |
+| Books       | parenting | NULL               | able         | Unknown        | 7     | 14.53              |
+| Books       | parenting | NULL               | n st         | Unknown        | 3     | 14.53              |
+| Books       | parenting | NULL               | cally        | Unknown        | 7     | 14.71              |
+| Electronics | musical   | corpunivamalg #5   | able         | NULL           | 7     | 14.72              |
+| Electronics | musical   | corpunivamalg #5   | ese          | NULL           | 4     | 14.91              |
+| Electronics | musical   | corpunivamalg #8   | able         | NULL           | 2     | 14.95              |
+| Jewelry     | birdal    | amalgcorp #7       | able         | NULL           | 4     | 15.07              |
+| Electronics | musical   | corpunivamalg #6   | ese          | NULL           | 4     | 15.24              |
+| Electronics | musical   | corpunivamalg #12  | able         | NULL           | 5     | 15.31              |
+| Electronics | musical   | corpunivamalg #3   | able         | NULL           | 5     | 15.5               |
+| Shoes       | womens    | NULL               | pri          | Unknown        | 5     | 15.65              |
+| Books       | parenting | NULL               | ation        | Unknown        | 3     | 15.73              |
+| Electronics | musical   | corpunivamalg #4   | ese          | NULL           | 9     | 15.85              |
+| Jewelry     | birdal    | NULL               | cally        | Unknown        | 10    | 15.99              |
+| Books       | parenting | NULL               | ese          | Unknown        | 2     | 16.33              |
+| Men         | pants     | NULL               | pri          | Unknown        | 6     | 16.84              |
++-------------+-----------+--------------------+--------------+----------------+-------+--------------------+
