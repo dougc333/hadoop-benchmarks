@@ -3,6 +3,9 @@
 #have to remove from root node and agents. Different
 
 sudo rm -Rf /etc/cloudera*
+sudo rm -Rf /usr/share/cmf
+sudo rm -Rf /var/cache/yum/cloudera*
+
 sudo rm -Rf /opt/cloudera
 
 sudo rm -Rf /testhdfsvol/dfs
