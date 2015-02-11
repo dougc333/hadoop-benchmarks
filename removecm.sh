@@ -2,7 +2,22 @@
 
 #have to remove from root node and agents. Different
 
+sudo yum remove postgresql\*
+sudo yum remove cloudera-manager\*
+
 sudo rm -Rf /etc/cloudera*
+sudo rm -Rf /etc/hadoop*
+sudo rm -Rf /etc/hbase*
+sudo rm -Rf /etc/hive*
+sudo rm -Rf /etc/impala
+sudo rm -Rf /etc/oozie
+sudo rm -Rf /etc/spark
+sudo rm -Rf /etc/sqoop*
+sudo rm -Rf /etc/solr
+sudo rm -Rf /etc/zookeeper
+sudo rm -Rf /etc/mahout
+sudo rm -Rf /etc/sentry
+
 sudo rm -Rf /usr/share/cmf
 sudo rm -Rf /var/cache/yum/cloudera*
 
