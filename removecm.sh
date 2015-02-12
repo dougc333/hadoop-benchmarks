@@ -4,6 +4,8 @@
 
 sudo yum remove postgresql\*
 sudo yum remove cloudera-manager\*
+sudo yum remove jdk.x86_64
+sudo yum remove oracle-j2sdk1.7.x86_64
 
 sudo rm -Rf /etc/cloudera*
 sudo rm -Rf /etc/hadoop*
