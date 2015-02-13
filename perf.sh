@@ -26,7 +26,13 @@ function addsshkey {
 
 #Usage: $1=host name
 function addsudoer {
-  scp sudoers.fix root@$1:/etc/sudoers
+  file=~/hadoop-benchmarks/hostserver
+  for line in $(cat $file); do
+    echo "host:$line"
+    echo "scp ~/hadoop-benchmarks/tmpsudo/sudoers.fix root:$line:/etc/sudoers"
+  done 
+#  scp sudoers.fix root@$1:/etc/sudoers
+  
 }
 
 
