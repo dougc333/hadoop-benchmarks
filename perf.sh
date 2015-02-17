@@ -24,17 +24,28 @@ function addsshkey {
   cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
 }
 
-#Usage: $1=host name
-function addsudoer {
-  file=~/hadoop-benchmarks/hostserver
-  for line in $(cat $file); do
-    echo "host:$line"
-    echo "scp ~/hadoop-benchmarks/tmpsudo/sudoers.fix root:$line:/etc/sudoers"
-  done 
-#  scp sudoers.fix root@$1:/etc/sudoers
-  
+function swappy {
+  echo "ssh root@r2391-d5-us14 \"sysctl vm.swappiness=0\""
+
 }
 
+#Usage: $1=host name
+function addsudoer {
+  file=~/hadoop-benchmarks/hostservers
+  for line in $(cat $file); do
+    echo "host:$line"
+    echo "scp ~/hadoop-benchmarks/tmpsudo/sudoers.fix root@$line:/etc/sudoers"
+  done 
+#  scp sudoers.fix root@$1:/etc/sudoers  
+}
+
+#$1 is the number of volumes to make
+function makeflood {
+  for i in $(seq 1 $1); do
+    echo "/opt/dssd/bin/flood create -V testhdfsvol$i -t block -F 4096 -l 4T TestObj$i"
+  done
+
+}
 
 #do I get the mounted directories in a ssh via ansible? Assume no
 function testoraclejava {
