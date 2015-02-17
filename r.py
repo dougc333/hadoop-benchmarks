@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 
-import pxssh
+from pexpect import pxssh
 import getpass
 
 
