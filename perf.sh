@@ -24,9 +24,12 @@ function addsshkey {
   cat ~/.ssh/id_rsa.pub | ssh doug@$1 'cat >> .ssh/authorized_keys'
 }
 
+#input num of clients
 function swappy {
-  echo "ssh root@r2391-d5-us14 \"sysctl vm.swappiness=0\""
-
+  for i in $(seq -f%02g 1 $1); do
+    echo "ssh root@r2391-d5-us$i \"sysctl vm.swappiness=0\""
+  done
+  
 }
 
 #Usage: $1=host name
@@ -42,9 +45,8 @@ function addsudoer {
 #$1 is the number of volumes to make
 function makeflood {
   for i in $(seq 1 $1); do
-    echo "/opt/dssd/bin/flood create -V testhdfsvol$i -t block -F 4096 -l 4T TestObj$i"
+    echo "/opt/dssd/bin/flood create -V testhdfsvol$i -t block -F 4096 -l 1T TestObj$i"
   done
-
 }
 
 #do I get the mounted directories in a ssh via ansible? Assume no

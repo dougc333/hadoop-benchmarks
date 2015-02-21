@@ -33,7 +33,7 @@
 # Block objects in this volume will be made available as local block devices.
 # If this value is blank, the service will not be started on this node.
 #
-DSSD_BLKDEV_VOLUME_NAME="testhdfsvol"
+DSSD_BLKDEV_VOLUME_NAME="testhdfsvol1"
 
 
 #
