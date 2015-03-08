@@ -8,9 +8,36 @@
 # reboot
 # rm -rf /var/run/cloudera-scm-agent ; this should complete if daemons are stopped
 #
+#should run this as root, don't need sudo. Leave in anyway
+sudo yum remove mahout
+sudo yum remove whirr
+sudo yum remove hue
+sudo yum remove pig
+sudo yum remove sqoop
+sudo yum remove sqoop2-server sqoop2-client
+sudo yum remove flume
+sudo yum remove oozie-client
+sudo yum remove oozie
+sudo yum remove hive hive-metastore hive-server hive-server2
+sudo yum remove hadoop-hbase
+sudo yum remove hadoop-zookeeper-server
+sudo yum remove hadoop-zookeeper
+sudo yum remove hadoop-hdfs-zkfc
+sudo yum remove hadoop-hdfs-hadoop-hdfs-journalnode
+sudo yum remove cloudera-cdh*
+sudo yum remove hadoop-httpfs
+sudo yum remove hadoop
+
+sudo yum remove cloudera-agent*
+sudo yum remove cloudera-server*
+
+
+rm -rf /tmp/scm*
+
 rm -rf /impala
 rm -rf /yarn
 
+#this is bad, we aren't removing all of java so CDH doesnt reinstall the jdk
 rm -rf /usr/java/*
 
 rm -rf /dfs
@@ -131,7 +158,9 @@ rm -rf /var/log/cloudera*
 rm -rf /var/log/hadoop-*
 rm -rf /var/log/impalad
 rm -rf /etc/security/limits.d/cloudera-scm.conf
-rm -rf /etc/yum.repos.d/cloudera*
+#this isn't necessary. We can leave the repos in place? Not sure
+#rm -rf /etc/yum.repos.d/cloudera*
+
 rm /etc/default/cloudera-scm-agent*
 rm /etc/rc.d/rc0.d/*cloudera*
 rm /etc/rc.d/rc1.d/*cloudera*
@@ -140,7 +169,7 @@ rm /etc/rc.d/rc3.d/*cloudera*
 rm /etc/rc.d/rc4.d/*cloudera*
 rm /etc/rc.d/rc5.d/*cloudera*
 rm /etc/rc.d/rc6.d/*cloudera*
+
 rm -rf /opt/cloudera
-rm -rf /etc/hive
-rm -rf /etc/hadoop
+
 
