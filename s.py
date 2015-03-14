@@ -3,37 +3,26 @@
 
 import pxssh
 import getpass
-
+import string
 
 try:
   s = pxssh.pxssh()
-  hostname='r2391-d5-us01'
+  hostname='r2491-d5-us01'
   username='doug'
   password='H0onglam'
   s.login(hostname,username,password)
-  s.sendline('ls -l /home/doug/hadoop-benchmarks')
+  s.sendline('rpm -qa | grep cloudera')
   s.prompt()
-  print(s.before)  
-  s.sendline('cd /home/doug/hadoop-benchmarks/')
-  s.sendline('bash perf.sh testjava')
-  s.prompt()
-  print(s.before)
-  #s.sendline('sudo rpm -ivh /home/doug/hadoop-benchmarks/jdk-7u71-linux-x64.rpm')
-  #s.prompt()
-  #print(s.before)
-  #s.sendline('bash perf.sh installhadoop')
-  #s.prompt()
-  #print(s.before)
-  #s.sendline('bash perf.sh initnamenode')
-  #s.prompt()
-  #print(s.before)
-  s.sendline('bash perf.sh starthadoop')
-  s.prompt()
-  print(s.before)
-  s.sendline('bash perf.sh runtests')
-  s.prompt()
-  print(s.before)
+  res=s.before
+  print("res:"+res)
+  rep=string.replace(res,"rpm -qa | grep cloudera","")
+  print("len:%d"%(len(res)))
+  print("rep:%s"%rep)
+  print("len rep:%d"%len(rep))
+  
 except pxssh.ExceptionPxssh as e:
   print("bad")
   print(e)
+
+
 
